@@ -531,8 +531,9 @@
         var destinasiKabupaten = $('#destinasi_kabupaten option:selected').text();
         var destinasiKecamatan = $('#destinasi_kecamatan option:selected').text();
         var destinasiKelurahan = $('#destinasi_kelurahan option:selected').text();
+        var whatsapp = $('#whatsapp').val();
 
-        console.log(originProvinsi, originKabupaten, originKecamatan, originKelurahan, armada, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan, destinasiKelurahan);
+        console.log(originProvinsi, originKabupaten, originKecamatan, originKelurahan, armada, whatsapp, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan, destinasiKelurahan);
 
         // Mengirim data ke server
         $.ajax({
@@ -548,6 +549,7 @@
             destinasi_kabupaten: destinasiKabupaten,
             destinasi_kecamatan: destinasiKecamatan,
             destinasi_kelurahan: destinasiKelurahan,
+            whatsapp: whatsapp,
           },
           success: function(response) {
             // Mengisi data ke elemen-elemen "container-result"

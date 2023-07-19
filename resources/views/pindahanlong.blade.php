@@ -190,6 +190,10 @@
           <h1>Total Harga</h1>
           <h2 id="harga_result"></h2>
         </div>
+        <div class="flex-button" style="float: right;">
+              <a href="#"><button id="orderBtn" class="button3"><img src="{{asset('images/cek.svg')}}"
+                    class="img-button">Order</button></a>
+            </div>
       </div>
     </div>
 
@@ -457,8 +461,9 @@
         var destinasiProvinsi = $('#destinasi_provinsi option:selected').text();
         var destinasiKabupaten = $('#destinasi_kabupaten option:selected').text();
         var destinasiKecamatan = $('#destinasi_kecamatan option:selected').text();
+        var whatsapp = $('#whatsapp').val();
 
-        console.log(originProvinsi, originKabupaten, originKecamatan, armada, tkbm, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan);
+        console.log(originProvinsi, originKabupaten, originKecamatan, armada, whatsapp, tkbm, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan);
 
         // Mengirim data ke server
         $.ajax({
@@ -473,6 +478,7 @@
             destinasi_provinsi: destinasiProvinsi,
             destinasi_kabupaten: destinasiKabupaten,
             destinasi_kecamatan: destinasiKecamatan,
+            whatsapp: whatsapp,
           },
           success: function (response) {
             // Mengisi data ke elemen-elemen "container-result"

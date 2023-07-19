@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Http\Request;
-use App\Models\Order;
 use App\Models\OrderSewaTrukLong;
 
 class MultiStepForm extends Component
@@ -29,17 +28,28 @@ class MultiStepForm extends Component
     public $detail_alamat_origin;
     public $detail_alamat_destinasi;
     public $rencana_kirim;
-    public $orderId;
-    public $order;
-    public $isUpdatingOrder;
-
 
     public $totalSteps = 3;
     public $currentStep = 1;
 
-    public function mount()
+    public function mount($harga)
     {
         $this->currentStep = 1;
+        $this->nama = $harga->nama;
+        $this->email = $harga->email;
+        $this->whatsapp = $harga->whatsapp;
+        $this->home_provinsi = $harga->home_provinsi;
+        $this->home_kabupaten = $harga->home_kabupaten;
+        $this->home_kecamatan = $harga->home_kecamatan;
+        $this->detail_alamat_home = $harga->detail_alamat_home;
+        $this->origin_provinsi = $harga->origin_provinsi;
+        $this->origin_kabupaten = $harga->origin_kabupaten;
+        $this->origin_kecamatan = $harga->origin_kecamatan;
+        $this->destinasi_provinsi = $harga->destinasi_provinsi;
+        $this->destinasi_kabupaten = $harga->destinasi_kabupaten;
+        $this->destinasi_kecamatan = $harga->destinasi_kecamatan;
+        $this->armada = $harga->armada;
+        $this->rencana_kirim = $harga->rencana_kirim;
     }
     public function render()
     {
@@ -73,7 +83,6 @@ class MultiStepForm extends Component
                 'whatsapp' => 'required|string',
                 'nama' => 'required|string',
                 'email' => 'required|email',
-                'jenis_kelamin' => 'required|string|in:laki-laki,perempuan',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
@@ -97,41 +106,69 @@ class MultiStepForm extends Component
             ]);
         }
     }
-     public function updateorder()
-     {
-         $order = OrderSewaTrukLong::find($this->orderId);
+    public function updateorder()
+    {
+        //Validasi input yang diperlukan
+        $this->validate([
+            'origin_provinsi' => 'required|string',
+            'origin_kabupaten' => 'required|string',
+            'origin_kecamatan' => 'required|string',
+            'destinasi_provinsi' => 'required|string',
+            'destinasi_kabupaten' => 'required|string',
+            'destinasi_kecamatan' => 'required|string',
+            'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+            'harga' => 'required|integer',
+            'whatsapp' => 'required|string',
+            'nama' => 'required|string',
+            'email' => 'required|email',
+            'jenis_kelamin' => 'required|string|in:laki-laki,perempuan',
+            'home_provinsi' => 'required|string',
+            'home_kabupaten' => 'required|string',
+            'home_kecamatan' => 'required|string',
+            'detail_alamat_home' => 'required|string',
+            'detail_alamat_origin' => 'required|string',
+            'detail_alamat_destinasi' => 'required|string',
+            'rencana_kirim' => 'required|date',
+        ]);
 
-         if (!$order) {
-             return response()->json(['message' => 'Order not found'], 404);
-         }
+        OrderSewaTrukLong::where('id', $this->harga_id)->update([
+            'nama' => $this->nama,
+            'email' => $this->email,
+            'whatsapp' => $this->whatsapp,
+            'home_provinsi' => $this->home_provinsi,
+            'home_kabupaten' => $this->home_kabupaten,
+            'home_kecamatan' => $this->home_kecamatan,
+            'detail_alamat_home' => $this->detail_alamat_home,
+            'detail_alamat_origin' => $this->detail_alamat_origin,
+            'detail_alamat_destinasi' => $this->detail_alamat_destinasi,
+            'origin_provinsi' => $this->origin_provinsi,
+            'origin_kabupaten' => $this->origin_kabupaten,
+            'origin_kecamatan' => $this->origin_kecamatan,
+            'destinasi_provinsi' => $this->destinasi_provinsi,
+            'destinasi_kabupaten' => $this->destinasi_kabupaten,
+            'destinasi_kecamatan' => $this->destinasi_kecamatan,
+            'armada' => $this->armada,
+            'rencana_kirim' => $this->rencana_kirim,
+        ]);
 
-         //Validasi input yang diperlukan
-         $validatedData = $this->validate([
-             'origin_provinsi' => 'required|string',
-             'origin_kabupaten' => 'required|string',
-             'origin_kecamatan' => 'required|string',
-             'destinasi_provinsi' => 'required|string',
-             'destinasi_kabupaten' => 'required|string',
-             'destinasi_kecamatan' => 'required|string',
-             'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
-             'harga' => 'required|integer',
-             'whatsapp' => 'required|string',
-             'nama' => 'required|string',
-             'email' => 'required|email',
-             'jenis_kelamin' => 'required|string|in:laki-laki,perempuan',
-             'home_provinsi' => 'required|string',
-             'home_kabupaten' => 'required|string',
-             'home_kecamatan' => 'required|string',
-             'detail_alamat_home' => 'required|string',
-             'detail_alamat_origin' => 'required|string',
-             'detail_alamat_destinasi' => 'required|string',
-             'rencana_kirim' => 'required|date',
-         ]);
+        $this->nama = NULL;
+        $this->email = NULL;
+        $this->whatsapp = NULL;
+        $this->home_provinsi = NULL;
+        $this->home_kabupaten = NULL;
+        $this->home_kecamatan = NULL;
+        $this->detail_alamat_home = NULL;
+        $this->detail_alamat_origin = NULL;
+        $this->detail_alamat_destinasi = NULL;
+        $this->origin_provinsi = NULL;
+        $this->origin_kabupaten = NULL;
+        $this->origin_kecamatan = NULL;
+        $this->destinasi_provinsi = NULL;
+        $this->destinasi_kabupaten = NULL;
+        $this->destinasi_kecamatan = NULL;
+        $this->armada = NULL;
+        $this->rencana_kirim = NULL;
 
-        // Update data order
-         $order->update($validatedData);
-
-         return response()->json(['message' => 'Order updated successfully'], 200);
-     }
+        redirect()->route('sewatruklong')->with('success', 'Data Berhasil');
+    }
 }
-    

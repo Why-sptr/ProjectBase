@@ -3,7 +3,7 @@
         <div>
 
             @if($currentStep == 1)
-        
+
             <!-- Step 1 -->
             <div class="row" style="margin-top: 100px;">
                 <!-- Stepper Progress Bar -->
@@ -48,8 +48,8 @@
                 </div>
                 <div class="col">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nama Customer</label>
-                        <input type="email" class="form-control" id="" aria-describedby="emailHelp" wire:model="nama">
+                        <label for="name" class="form-label">Nama Customer</label>
+                        <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="nama">
                         <span class="text-danger">@error('nama'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
@@ -58,18 +58,9 @@
                         <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">No Whatsapp</label>
-                        <input type="email" class="form-control" id="" aria-describedby="emailHelp" wire:model="whatsapp">
+                        <label for="whatsapp" class="form-label">No Whatsapp</label>
+                        <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="whatsapp">
                         <span class="text-danger">@error('whatsapp'){{ $message }}@enderror</span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
-                        <select class="form-select" aria-label="Default select example" wire:model="jenis_kelamin">
-                            <option selected>Pilih Jenis Kelamin</option>
-                            <option value="laki-laki">Laki-Laki</option>
-                            <option value="perempuan">Perempuan</option>
-                        </select>
-                        <span class="text-danger">@error('jenis_kelamin'){{ $message }}@enderror</span>
                     </div>
                 </div>
                 <div class="col">
@@ -79,7 +70,7 @@
             @endif
 
             @if($currentStep == 2)
-        
+
             <!-- Step 2 -->
             <div class="row" style="margin-top: 100px;">
                 <!-- Stepper Progress Bar -->
@@ -125,7 +116,7 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="" class="form-label">Provinsi</label>
-                        <input type="email" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_provinsi">
+                        <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_provinsi">
                         <span class="text-danger">@error('home_provinsi'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
@@ -151,7 +142,7 @@
             @endif
 
             @if($currentStep == 3)
-        
+
             <!-- Step 3 -->
             <div class="row" style="margin-top: 100px;">
                 <!-- Stepper Progress Bar -->
@@ -199,23 +190,29 @@
                         <tr>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Provinsi</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="origin_provinsi">
-                                    <span class="text-danger">@error('origin_provinsi'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Provinsi Asal</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="origin_provinsi">
+                                        <span class="text-danger">@error('origin_provinsi'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Kabupaten</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="origin_kabupaten">
-                                    <span class="text-danger">@error('origin_kabupaten'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Kabupaten Asal</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="origin_kabupaten">
+                                        <span class="text-danger">@error('origin_kabupaten'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Kecamatan</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="origin_kecamatan">
-                                    <span class="text-danger">@error('origin_kecamatan'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Kecamatan Asal</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="origin_kecamatan">
+                                        <span class="text-danger">@error('origin_kecamatan'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                         </tr>
@@ -231,23 +228,29 @@
                         <tr>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Provinsi</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="destinasi_provinsi">
-                                    <span class="text-danger">@error('destinasi_provinsi'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Provinsi Destinasi</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="destinasi_provinsi">
+                                        <span class="text-danger">@error('destinasi_provinsi'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Kabupaten</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="destinasi_kabupaten">
-                                    <span class="text-danger">@error('destinasi_kabupaten'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Kabupaten Destinasi</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="destinasi_kabupaten">
+                                        <span class="text-danger">@error('destinasi_kabupaten'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                             <td>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Kecamatan</label>
-                                    <input type="text" class="form-control" id="" aria-describedby="emailHelp" wire:model="destinasi_kecamatan">
-                                    <span class="text-danger">@error('destinasi_kecamatan'){{ $message }}@enderror</span>
+                                    <fieldset disabled>
+                                        <label for="disabledTextInput" class="form-label">Kecamatan Destinasi</label>
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" wire:model="destinasi_kecamatan">
+                                        <span class="text-danger">@error('destinasi_kecamatan'){{ $message }}@enderror</span>
+                                    </fieldset>
                                 </div>
                             </td>
                         </tr>
@@ -260,19 +263,15 @@
                     </div>
 
                     <div class="md-form md-outline input-with-post-icon datepicker" id="accLabels">
-                        <label for="accessibility-example">Rencana Kirim</label>
-                        <input placeholder="Select date" type="text" id="accessibility-example" class="form-control" wire:model="rencana_kirim">
+                        <label for="date">Rencana Kirim</label>
+                        <input placeholder="Select date" type="date" id="date" class="form-control" wire:model="rencana_kirim">
                         <i class="fas fa-calendar input-prefix" tabindex=0></i>
                         <span class="text-danger">@error('rencana_kirim'){{ $message }}@enderror</span>
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Kendaraan</label>
-                        <select class="form-select" aria-label="Default select example" wire:model="armada">
-                            <option selected>Pilih Jenis Kelamin</option>
-                            <option value="Pickup">Pickup</option>
-                            <option value="CDD">CDD</option>
-                        </select>
+                        <label for="disabledTextInput" class="form-label">Jensi Kendaraan</label>
+                        <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled wire:model="armada">
                         <span class="text-danger">@error('armada'){{ $message }}@enderror</span>
                     </div>
                 </div>
@@ -296,7 +295,10 @@
             @endif
 
             @if ($currentStep == 3)
-            <button type="submit" class="btn btn-md btn-primary">Kirim</button>
+            <button type="submit" class="btn btn-md btn-primary" wire:submit.prevent="updateorder">
+                Kirim
+            </button>
+
             @endif
         </div>
 
@@ -306,3 +308,16 @@
 
 
 </div>
+
+@section('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+    new Pikaday({
+        field: document.getElementById('date'),
+        format: 'MM/DD/YY'
+    })
+</script>
+
+@endsection

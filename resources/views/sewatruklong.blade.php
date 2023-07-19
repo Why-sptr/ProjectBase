@@ -53,11 +53,11 @@
           </div>
           <div class="card">
             <a href="https://mauorder.online/pilar-utama-transindo-surabaya">
-            <div class="img">
-              <img src="{{asset('images/cargo.svg')}}">
-            </div>
-            <h4 class="title">Cargo</h4>
-            <h5 class="title">Pindahan anda lebih Murah dan Terjangkau</h5>
+              <div class="img">
+                <img src="{{asset('images/cargo.svg')}}">
+              </div>
+              <h4 class="title">Cargo</h4>
+              <h5 class="title">Pindahan anda lebih Murah dan Terjangkau</h5>
             </a>
           </div>
         </div>
@@ -92,6 +92,8 @@
                 @endforeach
               </select>
             </div>
+            <!-- Add this hidden input to store the ID -->
+            <input type="hidden" id="dataId" value="">
             <div class="input-box">
               <span class="details">.</span>
               <select class="input" name="origin_kabupaten" id="origin_kabupaten" required>
@@ -143,7 +145,7 @@
               </select>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="input-box-wide">
               <span class="details">Whatsapp</span>
@@ -172,18 +174,11 @@
           <h1>Total Harga</h1>
           <h2 id="harga_result"></h2>
         </div>
-        <div class="flex-button">
-          @isset($harga)
-          <form action="{{ route('orderstep', ['id' => $harga->id]) }}" method="POST">
-            @csrf
-            <input type="hidden" name="id" id="id" value="{{ $harga->id }}">
-            <button type="submit" id="orderBtn" class="button">
-              <img src="{{ asset('images/cek.svg') }}" class="img-button">
-              Order
-            </button>
-          </form>
-          @endisset
-
+        <div class="flex-button" style="float: right;">
+          <button type="submit" id="orderBtn" class="button">
+            <img src="{{ asset('images/cek.svg') }}" class="img-button">
+            Order
+          </button>
         </div>
 
       </div>
@@ -435,6 +430,7 @@
         }
       });
 
+      var dataId;
 
       $('#cekHargaBtn').on('click', function(e) {
         e.preventDefault();
@@ -447,8 +443,9 @@
         var destinasiProvinsi = $('#destinasi_provinsi option:selected').text();
         var destinasiKabupaten = $('#destinasi_kabupaten option:selected').text();
         var destinasiKecamatan = $('#destinasi_kecamatan option:selected').text();
+        var whatsapp = $('#whatsapp').val();
 
-        console.log(originProvinsi, originKabupaten, originKecamatan, armada, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan);
+        console.log(originProvinsi, originKabupaten, originKecamatan, armada, whatsapp, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan);
 
         // Mengirim data ke server
         $.ajax({
@@ -462,6 +459,7 @@
             destinasi_provinsi: destinasiProvinsi,
             destinasi_kabupaten: destinasiKabupaten,
             destinasi_kecamatan: destinasiKecamatan,
+            whatsapp: whatsapp,
           },
           success: function(response) {
             // Mengisi data ke elemen-elemen "container-result"
@@ -474,6 +472,8 @@
             $('#destinasi_kecamatan_result').text(destinasiKecamatan);
             $('#armada_result').text(armada);
 
+            // Simpan ID yang diterima ke dalam variabel dataId
+            dataId = response.id;
             // Cek jika harga ditemukan atau tidak
             if (response.harga) {
               $('#harga_result').text(response.harga);
@@ -490,9 +490,15 @@
       $('#orderBtn').on('click', function(e) {
         e.preventDefault();
 
-        // Mengirimkan formulir secara manual
-        $(this).closest('form').submit();
+        // Periksa apakah dataId memiliki nilai yang valid
+        if (dataId) {
+          // Redirect ke halaman stepper dengan menggunakan dataId sebagai parameter
+          window.location.href = '/orderstep/' + dataId;
+        } else {
+          console.log('Data ID tidak ditemukan.');
+        }
       });
+
 
 
 
