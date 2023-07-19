@@ -183,6 +183,7 @@ class ShortTripPindahanController extends Controller
         $destinasiProvinsi = $request->input('destinasi_provinsi');
         $destinasiKabupaten = $request->input('destinasi_kabupaten');
         $destinasiKecamatan = $request->input('destinasi_kecamatan');
+        $whatsapp = $request->input('whatsapp');
 
         // Query untuk mendapatkan harga dan jarak berdasarkan data yang diberikan
         $result = DB::table('short_trip_pindahan')
@@ -210,6 +211,7 @@ class ShortTripPindahanController extends Controller
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
             $newHarga->harga = $result->harga;
             $newHarga->jarak = $result->jarak;
+            $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
             return response()->json(['harga' => $result->harga, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
@@ -226,6 +228,7 @@ class ShortTripPindahanController extends Controller
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
             $newHarga->harga = 0;
             $newHarga->jarak = 0;
+            $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
             return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);

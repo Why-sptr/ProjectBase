@@ -153,6 +153,7 @@ class IndoregionController extends Controller
         $destinasiProvinsi = $request->input('destinasi_provinsi');
         $destinasiKabupaten = $request->input('destinasi_kabupaten');
         $destinasiKecamatan = $request->input('destinasi_kecamatan');
+        $whatsapp = $request->input('whatsapp');
 
         // Query untuk mendapatkan harga berdasarkan data yang diberikan
         $harga = DB::table('longtrip_truk')
@@ -176,6 +177,7 @@ class IndoregionController extends Controller
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
             $newHarga->harga = $harga;
+            $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
             return response()->json(['harga' => $harga, 'id' => $newHarga->id]);
@@ -190,6 +192,7 @@ class IndoregionController extends Controller
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
             $newHarga->harga = 0;
+            $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
             return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);

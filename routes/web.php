@@ -33,8 +33,8 @@ Route::post('/kabupatencek', [IndoregionController::class, 'kabupatencek'])->nam
 Route::post('/kecamatancek', [IndoregionController::class, 'kecamatancek'])->name('kecamatancek');
 Route::post('/data', [IndoregionController::class, 'store'])->name('data.store');
 
-Route::get('/orderan/{id}', [IndoregionController::class, 'tampil']);
-Route::post('/orderstep/{id}', [IndoregionController::class, 'tampil'])->name('orderstep');
+// Route::get('/orderan/{id}', [IndoregionController::class, 'tampil']);
+Route::get('/orderstep/{id}', [IndoregionController::class, 'tampil'])->name('orderstep');
 Route::get('/order', function () {
     return view('orderstep');
 });
