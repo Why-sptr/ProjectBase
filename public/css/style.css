@@ -4,15 +4,20 @@
 }
 
 body {
-    margin-left: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
     background-color: #030712;
     color: white;
+    list-style: none;
+    text-decoration: none;
 }
 
+/* Navbar */
 nav {
     margin-top: 50px;
 }
 
+/* Header */
 .container-header {
     display: flex;
     flex-direction: row;
@@ -20,32 +25,43 @@ nav {
 }
 
 .text-header {
+    flex-basis: 70%;
     width: 50%;
 }
 
 .image {
-    width: 50%;
-    margin-right: 100px;
+    flex-basis: 20%;
+    position: absolute;
+    height: 100%;
+    z-index: -1;
+    right: 100px;
+    top: 300px;
 }
 
+.fotokota{
+    height: 550px;
+}
+
+
 .text-header h1 {
-    font-size: 30px;
-    margin-top: 100px;
-    width: 600px;
+    font-size: 34px;
+    margin-top: 50px;
+    width: 700px;
     font-weight: 700;
 }
 
 .text-header h2 {
-    width: 600px;
+    width: 700px;
     font-weight: 200;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .text-header p {
-    width: 600px;
-    font-size: 18px;
+    width: 700px;
+    font-size: 20px;
 }
 
+/* Item Card Jasa */
 .card {
     background: #0B1C24;
     width: 230px;
@@ -94,7 +110,7 @@ nav {
     transition: 0.5s;
 }
 
-
+/* Button LongTrip &  ShortTrip */
 
 .flex-button {
     display: flex;
@@ -119,9 +135,7 @@ nav {
 .flex-button button {
     display: flex;
     align-items: center;
-    /* Mengatur posisi vertikal secara tengah */
     justify-content: center;
-    /* Mengatur posisi horizontal secara tengah */
     border-radius: 20px;
     width: 180px;
     margin-right: 20px;
@@ -131,10 +145,11 @@ a {
     text-decoration: none;
 }
 
+/* Form Cek Harga */
 .container-form {
     flex: 1;
     margin-top: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
     background: #0B1C24;
     padding: 25px 30px;
@@ -186,7 +201,7 @@ a {
     margin-left: 50px;
     flex: 1;
     margin-top: 20px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     background: #0B1C24;
     padding: 25px 30px;
@@ -195,15 +210,15 @@ a {
 
 .row-all {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
 }
 
+/* About We */
 .row-us {
     margin-top: 100px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-right: 100px;
     align-items: center;
     text-align: center;
 }
@@ -219,15 +234,15 @@ a {
     font-weight: 300;
 }
 
+/* Armada Card */
 .flex-container {
     display: flex;
     justify-content: space-between;
-    margin-right: 100px;
 }
 
-.flex-container>div {
+.flex-container div {
     background-color: #0B1C24;
-    margin: 10px;
+    justify-content: space-between;
     padding: 20px;
     text-align: center;
     font-size: 30px;
@@ -258,18 +273,187 @@ a {
     vertical-align: middle;
 }
 
-.armada-h1{
+.armada-h1 {
     margin-top: 100px;
+    font-size: 34px;
     width: 800px;
 }
 
-.armada-p{
+.armada-p {
     width: 800px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 
-@media (max-width: 768px) {
+/* Card Armada */
+.slider-container {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1640px;
+    width: 100%;
+    padding: 40px;
+}
+
+.slide-content {
+    margin: 0 40px;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.card-armada {
+    border-radius: 25px;
+    background-color: #0B1C24;
+}
+
+.card-armada-image {
+    position: relative;
+    height: 150px;
+    width: 200px;
+    padding: 3px;
+    object-fit: cover;
+}
+
+.card-armada-image .card-armada-img {
+    height: 100%;
+    width: 100%;
+}
+
+.image-content,
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content {
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 25px 25px 0 25px;
+    background-color: #324852;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.description {
+    margin-top: -10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+/* Footer */
+.footer1 {
+    margin-left: -8%;
+    margin-right: -5.5%;
+    margin-bottom: -2%;
+    background: #000000;
+    margin-top: 100px;
+}
+
+.footer {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    gap: 3.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.footer-content h4 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 26px;
+}
+
+.footer-content h5 {
+    color: #A3BCFF;
+    margin-bottom: 1.5rem;
+    font-size: 20px;
+}
+
+.footer-content li {
+    margin-bottom: 16px;
+}
+
+.footer-content li a {
+    display: block;
+    color: #d6d6d6;
+    font-size: 15px;
+    font-weight: 400;
+    max-width: 500px;
+    transition: all .40s ease;
+}
+
+.footer-content li a:hover {
+    transform: translateY(-3px) translateX(-5px);
+    color: #fff;
+}
+
+.footer-content p {
+    color: #d6d6d6;
+    font-size: 26px;
+    line-height: 30px;
+    margin: 20px 0;
+}
+
+.icons a {
+    display: inline-block;
+    font-size: 22px;
+    color: #d6d6d6;
+    margin-right: 17px;
+    transition: all .40s ease;
+}
+
+.icons a:hover {
+    transform: translateY(-3px) translateX(-5px);
+    color: #fff;
+}
+
+/*Allert*/
+.alert {
+  padding: 20px;
+  background-color: #00F0FF; /* Hijau */
+  color: black;
+  font-weight: 500;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+@media (max-width: 834px) {
     .container {
         flex-direction: column;
     }
@@ -279,3 +463,208 @@ a {
         width: 100%;
     }
 }
+
+/* Mobile responsiveness */
+
+/* Adjust header image position for mobile */
+@media (max-width: 834px) {
+    .image {
+        display: none;
+    }
+}
+
+/* Make the container in the header stack for mobile */
+@media (max-width: 834px) {
+    .container-header {
+        flex-direction: column;
+    }
+
+    .text-header {
+        width: 100%;
+    }
+}
+
+@media (max-width: 834px) {
+    .row-all {
+        flex-direction: column;
+        align-items: center;
+        /* Center the containers */
+    }
+
+    .container-form,
+    .container-result {
+        margin: 10px;
+    }
+}
+
+/* Adjust Form Cek Harga for mobile */
+@media (max-width: 834px) {
+
+    .container-form form .input-box {
+        width: 100%;
+    }
+
+    .container-form form .input-box-wide {
+        width: 50%;
+    }
+
+    .armada-h1 {
+        margin-top: 50px;
+        font-size: 24px;
+        width: 80%;
+    }
+
+    .armada-p {
+        width: 70%;
+        font-size: 16px;
+    }
+
+    .row-us {
+        margin-top: 50px;
+        /* Reduce the margin-top for better mobile display */
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
+        align-items: center;
+        /* Center items horizontally on smaller screens */
+        text-align: center;
+    }
+
+    .us-title {
+        font-size: 40px;
+    }
+
+    .us-text {
+        width: 100%;
+        font-size: 20x;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .text-header h1 {
+        margin-top: 10px;
+        font-size: 24px;
+        max-width: 350px;
+    }
+
+    .text-header h2 {
+        font-size: 18px;
+        max-width: 350px;
+    }
+
+    .text-header p {
+        font-size: 16px;
+        max-width: 350px;
+    }
+
+    .card h4,
+    .card h5 {
+        font-size: 14px;
+    }
+
+
+    .armada-h1 {
+        margin-top: 50px;
+        font-size: 24px;
+        width: 100%;
+    }
+
+    .armada-p {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .row-us {
+        margin-top: 50px;
+        /* Reduce the margin-top for better mobile display */
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
+        align-items: center;
+        /* Center items horizontally on smaller screens */
+        text-align: center;
+    }
+
+    .us-title {
+        font-size: 36px;
+        /* Reduce the font size for mobile */
+    }
+
+    .us-text {
+        width: 100%;
+        /* Set the width to 100% for full-width on mobile */
+        font-size: 18px;
+        /* Reduce the font size for mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-form form .row {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .container-form form .input-box,
+    .container-form form .input-box-wide {
+        width: 100%;
+    }
+
+    .flex-button {
+        margin-top: 20px;
+    }
+
+    .flex-button button {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Modify font sizes as needed */
+    .container-form form .input,
+    .container-form form .details,
+    .container-result h1,
+    .container-result p {
+        font-size: 14px;
+    }
+
+    .container-form form .input-box .details,
+    .container-result h2 {
+        font-size: 12px;
+    }
+
+    .slide-content{
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn{
+        display: none;
+    }
+
+}
+
+/* Stepper Image */
+@media (max-width: 991.98px) {
+    .imagestepper {
+        display: none;
+        /* Hide the div on tablet devices */
+    }
+}
+
+/* Common styles for all screen sizes */
+
+/* Your existing CSS styles here */
+
+/* Mobile responsiveness */

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/cekharga', function () {
     return view('welcome');
 });
-
+Route::get('/', [IndoregionController::class, 'cekongkir'])->name('cekongkir');
 
 // Route Untuk Sewa Truk Long Trip
 Route::post('/datas', [HargaController::class, 'cekHarga'])->name('datas');
@@ -41,13 +41,15 @@ Route::get('/order', function () {
 
 // Route Untuk Sewa Truk Short Trip
 Route::post('/shortsewa', [ShortTripSewaTrukController::class, 'cekHarga'])->name('shortsewa');
-Route::get('/cekongkirdalamkota', [ShortTripSewaTrukController::class, 'cekongkir'])->name('cekongkir');
+Route::get('/cekongkirdalamkota', [ShortTripSewaTrukController::class, 'cekongkir'])->name('cekongkirdalamkota');
 Route::post('/kabupaten2', [ShortTripSewaTrukController::class, 'kabupaten2'])->name('kabupaten2');
 Route::post('/kecamatan2', [ShortTripSewaTrukController::class, 'kecamatan2'])->name('kecamatan2');
 Route::post('/kelurahan2', [ShortTripSewaTrukController::class, 'kelurahan2'])->name('kelurahan2');
 Route::post('/kabupatencek2', [ShortTripSewaTrukController::class, 'kabupatencek2'])->name('kabupatencek2');
 Route::post('/kecamatancek2', [ShortTripSewaTrukController::class, 'kecamatancek2'])->name('kecamatancek2');
 Route::post('/kelurahancek2', [ShortTripSewaTrukController::class, 'kelurahancek2'])->name('kelurahancek2');
+
+Route::get('/ordersteptrukshort/{id}', [ShortTripSewaTrukController::class, 'tampil'])->name('ordersteptrukshort');
 
 // Route Untuk Pindahan Long Trip
 Route::get('/pindahan', [LongTripPindahanController::class, 'pindahan'])->name('pindahan');
@@ -60,9 +62,11 @@ Route::post('/kecamatancek/pindahan', [LongTripPindahanController::class, 'kecam
 Route::post('/kelurahancek/pindahan', [LongTripPindahanController::class, 'kelurahancek'])->name('kelurahancek/pindahan');
 Route::post('/data/pindahan', [LongTripPindahanController::class, 'store'])->name('data.store/pindahan');
 
+Route::get('/ordersteppindahanlong/{id}', [LongTripPindahanController::class, 'tampil'])->name('ordersteppindahanlong');
+
 // Route Untuk Pindahan Short Trip
 Route::post('/pindahanshort', [ShortTripPindahanController::class, 'cekHarga'])->name('pindahanshort');
-Route::get('/cekongkirdalamkota2', [ShortTripPindahanController::class, 'cekongkir'])->name('cekongkir');
+Route::get('/cekongkirdalamkota2', [ShortTripPindahanController::class, 'cekongkir'])->name('cekongkirdalamkota2');
 Route::get('/tambahdata/pindahan2', [ShortTripPindahanController::class, 'kota'])->name('kota/pindahan2');
 Route::post('/kabupaten/pindahan2', [ShortTripPindahanController::class, 'kabupaten2'])->name('kabupaten/pindahan2');
 Route::post('/kecamatan/pindahan2', [ShortTripPindahanController::class, 'kecamatan2'])->name('kecamatan/pindahan2');
@@ -71,5 +75,7 @@ Route::post('/kabupatencek/pindahan2', [ShortTripPindahanController::class, 'kab
 Route::post('/kecamatancek/pindahan2', [ShortTripPindahanController::class, 'kecamatancek2'])->name('kecamatancek/pindahan2');
 Route::post('/kelurahancek/pindahan2', [ShortTripPindahanController::class, 'kelurahancek2'])->name('kelurahancek/pindahan2');
 Route::post('/data/pindahan2', [ShortTripPindahanController::class, 'store'])->name('data.store/pindahan2');
+
+Route::get('/ordersteppindahanshort/{id}', [ShortTripPindahanController::class, 'tampil'])->name('ordersteppindahanshort');
 
 

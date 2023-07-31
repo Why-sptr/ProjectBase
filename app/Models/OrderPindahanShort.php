@@ -21,6 +21,7 @@ class OrderPindahanShort extends Model
         'armada',
         'tkbm',
         'jarak',
+        'paket',
         'harga',
         'whatsapp',
         'nama',

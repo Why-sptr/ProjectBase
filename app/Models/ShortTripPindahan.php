@@ -19,7 +19,6 @@ class ShortTripPindahan extends Model
         'destinasi_kecamatan',
         'destinasi_kelurahan',
         'armada',
-        'tkbm',
         'jarak',
         'harga',
     ];

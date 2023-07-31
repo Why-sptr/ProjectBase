@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Illuminate\Http\Request;
 use App\Models\OrderSewaTrukLong;
 
 class MultiStepForm extends Component
@@ -28,13 +27,17 @@ class MultiStepForm extends Component
     public $detail_alamat_origin;
     public $detail_alamat_destinasi;
     public $rencana_kirim;
+    public $harga_id;
 
-    public $totalSteps = 3;
+
+    public $totalSteps = 4;
     public $currentStep = 1;
 
-    public function mount($harga)
+    public function mount($harga, $harga_id)
     {
         $this->currentStep = 1;
+        $this->harga = $harga;
+        $this->harga_id = $harga_id;
         $this->nama = $harga->nama;
         $this->email = $harga->email;
         $this->whatsapp = $harga->whatsapp;
@@ -42,6 +45,8 @@ class MultiStepForm extends Component
         $this->home_kabupaten = $harga->home_kabupaten;
         $this->home_kecamatan = $harga->home_kecamatan;
         $this->detail_alamat_home = $harga->detail_alamat_home;
+        $this->detail_alamat_origin = $harga->detail_alamat_origin;
+        $this->detail_alamat_destinasi = $harga->detail_alamat_destinasi;
         $this->origin_provinsi = $harga->origin_provinsi;
         $this->origin_kabupaten = $harga->origin_kabupaten;
         $this->origin_kecamatan = $harga->origin_kecamatan;
@@ -90,8 +95,8 @@ class MultiStepForm extends Component
                 'home_kabupaten' => 'required|string',
                 'home_kecamatan' => 'required|string',
                 'detail_alamat_home' => 'required|string',
-            ]);
-        } elseif ($this->currentStep == 3) {
+            
+            ]);} elseif ($this->currentStep == 3) {
             $this->validate([
                 'origin_provinsi' => 'required|string',
                 'origin_kabupaten' => 'required|string',
@@ -104,32 +109,27 @@ class MultiStepForm extends Component
                 'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
                 'rencana_kirim' => 'required|date',
             ]);
+        } elseif ($this->currentStep == 4) {
+            $this->validate([
+                'origin_provinsi' => 'required|string',
+                'origin_kabupaten' => 'required|string',
+                'origin_kecamatan' => 'required|string',
+                'destinasi_provinsi' => 'required|string',
+                'destinasi_kabupaten' => 'required|string',
+                'destinasi_kecamatan' => 'required|string',
+                'detail_alamat_origin' => 'required|string',
+                'detail_alamat_destinasi' => 'required|string',
+                'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+                'rencana_kirim' => 'required|date',
+                'home_provinsi' => 'required|string',
+                'home_kabupaten' => 'required|string',
+                'home_kecamatan' => 'required|string',
+                'detail_alamat_home' => 'required|string',
+            ]);
         }
     }
     public function updateorder()
     {
-        //Validasi input yang diperlukan
-        $this->validate([
-            'origin_provinsi' => 'required|string',
-            'origin_kabupaten' => 'required|string',
-            'origin_kecamatan' => 'required|string',
-            'destinasi_provinsi' => 'required|string',
-            'destinasi_kabupaten' => 'required|string',
-            'destinasi_kecamatan' => 'required|string',
-            'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
-            'harga' => 'required|integer',
-            'whatsapp' => 'required|string',
-            'nama' => 'required|string',
-            'email' => 'required|email',
-            'jenis_kelamin' => 'required|string|in:laki-laki,perempuan',
-            'home_provinsi' => 'required|string',
-            'home_kabupaten' => 'required|string',
-            'home_kecamatan' => 'required|string',
-            'detail_alamat_home' => 'required|string',
-            'detail_alamat_origin' => 'required|string',
-            'detail_alamat_destinasi' => 'required|string',
-            'rencana_kirim' => 'required|date',
-        ]);
 
         OrderSewaTrukLong::where('id', $this->harga_id)->update([
             'nama' => $this->nama,
@@ -169,6 +169,6 @@ class MultiStepForm extends Component
         $this->armada = NULL;
         $this->rencana_kirim = NULL;
 
-        redirect()->route('sewatruklong')->with('success', 'Data Berhasil');
+        redirect()->route('cekongkir')->with('success', 'Terima Kasih Atas Pesanan Anda, CS Kami Akan Segera Menghubungi Anda');
     }
 }
