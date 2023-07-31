@@ -5,26 +5,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Cek Harga</title>
+  <title>Cek Harga-Sewa Truk</title>
 
   <!-- Fonts -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+  <link rel="icon" type="image/x-icon" href="{{asset('images/logosatu.svg')}}">
 </head>
 
+<style>
+    /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #00F0FF; /* Hijau */
+  color: black;
+  font-weight: 500;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+</style>
 <body>
   <nav class="navbar bg-body-tertiary">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="200" height="50">
+        <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="250" height="50">
       </a>
     </div>
   </nav>
+  
+    @if(session('success'))
+  <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+   {{ session('success') }}
+</div>
+  @endif
 
   <section id="header">
     <div class="container-header">
@@ -64,7 +102,7 @@
 
       </div>
       <div class="image">
-        <img src="{{asset('images/fotomaps.svg')}}" alt="Gambar">
+        <img src="{{asset('images/fotoutama.svg')}}" alt="Gambar">
       </div>
     </div>
 
@@ -86,7 +124,7 @@
             <div class="input-box">
               <span class="details">Kota Asal</span>
               <select class="input" name="origin_provinsi" id="origin_provinsi" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Provinsi ==</option>
                 @foreach ($provinces as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
@@ -95,15 +133,15 @@
             <!-- Add this hidden input to store the ID -->
             <input type="hidden" id="dataId" value="">
             <div class="input-box">
-              <span class="details">.</span>
+              <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kabupaten" id="origin_kabupaten" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Kabupaten ==</option>
               </select>
             </div>
             <div class="input-box">
-              <span class="details">.</span>
+              <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kecamatan" id="origin_kecamatan" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Kecamatan ==</option>
               </select>
             </div>
           </div>
@@ -112,22 +150,22 @@
             <div class="input-box">
               <span class="details">Kota Tujuan</span>
               <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Provinsi ==</option>
                 @foreach ($provinces as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="input-box">
-              <span class="details">.</span>
+              <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Kabupaten ==</option>
               </select>
             </div>
             <div class="input-box">
-              <span class="details">.</span>
+              <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
-                <option>== Pilih Salah Satu ==</option>
+                <option>== Pilih Kecamatan ==</option>
               </select>
             </div>
           </div>
@@ -189,88 +227,203 @@
     <h1 class="armada-h1">Pilih Armada Terbaik Kami Sesuai Kebutuhan Anda</h1>
     <p class="armada-p">Kami menyediakan berbagai armada yang siap melayani anda kapanpun dan dimanapun pengirimannya
     </p>
-    <div class="flex-container">
-      <div>
-        <div class="title-berat">
-          <img src="{{asset('images/pickup.svg')}}">
-          <h4>PickUp</h4>
-          <span>
-            <img src="{{asset('images/berat.svg')}}" class="img-berat"><span class="berat" style="font-size: 18px; ">Kapasitas Berat : 1 Ton</span>
-          </span>
-        </div>
+    <div class="slider-container swiper">
+      <div class="slide-content">
+        <div class="crad-wrapper swiper-wrapper">
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
 
-        <div class="column">
-          <img src="{{asset('images/volume.svg')}}"><span style="font-size: 18px; font-weight: 200;">Volume : </span>
-          <img src="{{asset('images/lebar.svg')}}"><span style="font-size: 18px; font-weight: 200;">Lebar : </span>
-          <img src="{{asset('images/tinggi.svg')}}"><span style="font-size: 18px; font-weight: 200;">Tinggi : </span>
-          <img src="{{asset('images/panjang.svg')}}"><span style="font-size: 18px; font-weight: 200;">Panjang : </span>
+              <div class="card-armada-image">
+                <img src="{{asset('images/fuso.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Fuso Box</h2>
+              <p class="description">
+                Kapasitas : 10 Ton
+              </p>
+              <p class="description">
+                Volume : 33 CBM
+              </p>
+              <p class="description">
+                Lebar : 2,3 M
+              </p>
+              <p class="description">
+                Panjang : 6 M
+              </p>
+              <p class="description">
+                Tinggi : 2,2 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/cde.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Cde Box</h2>
+              <p class="description">
+                Kapasitas : 4,5 Ton
+              </p>
+              <p class="description">
+                Volume : 9 CBM
+              </p>
+              <p class="description">
+                Lebar : 1,6 M
+              </p>
+              <p class="description">
+                Panjang : 3 M
+              </p>
+              <p class="description">
+                Tinggi : 1,6 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/cdd.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Cdd Box</h2>
+              <p class="description">
+                Kapasitas : 4 Ton
+              </p>
+              <p class="description">
+                Volume : 16 CBM
+              </p>
+              <p class="description">
+                Lebar : 1,9 M
+              </p>
+              <p class="description">
+                Panjang : 4 M
+              </p>
+              <p class="description">
+                Tinggi : 1,8 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/fusobak.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Fuso Bak</h2>
+              <p class="description">
+                Kapasitas : 10 Ton
+              </p>
+              <p class="description">
+                Volume : 33 CBM
+              </p>
+              <p class="description">
+                Lebar : 2,3 M
+              </p>
+              <p class="description">
+                Panjang : 6 M
+              </p>
+              <p class="description">
+                Tinggi : 2,2 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/cddbak.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Cdd Bak</h2>
+              <p class="description">
+                Kapasitas : 4 Ton
+              </p>
+              <p class="description">
+                Volume : 16 CBM
+              </p>
+              <p class="description">
+                Lebar : 1,9 M
+              </p>
+              <p class="description">
+                Panjang : 4 M
+              </p>
+              <p class="description">
+                Tinggi : 1,8 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/cddlong.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Cdd Long</h2>
+              <p class="description">
+                Kapasitas : 4,5 Ton
+              </p>
+              <p class="description">
+                Volume : 24 CBM
+              </p>
+              <p class="description">
+                Lebar : 2 M
+              </p>
+              <p class="description">
+                Panjang : 5,5 M
+              </p>
+              <p class="description">
+                Tinggi : 2,1 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/pickup.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">PickUp</h2>
+              <p class="description">
+                Kapasitas : 10 Ton
+              </p>
+              <p class="description">
+                Volume : 33 CBM
+              </p>
+              <p class="description">
+                Lebar : 2,3 M
+              </p>
+              <p class="description">
+                Panjang : 6 M
+              </p>
+              <p class="description">
+                Tinggi : 2,2 M
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="title-berat">
-          <img src="{{asset('images/pickup.svg')}}">
-          <h4>PickUp</h4>
-          <span>
-            <img src="{{asset('images/berat.svg')}}" class="img-berat"><span class="berat" style="font-size: 18px; ">Kapasitas Berat : 1 Ton</span>
-          </span>
-        </div>
-
-        <div class="column">
-          <img src="{{asset('images/volume.svg')}}"><span style="font-size: 18px; font-weight: 200;">Volume : </span>
-          <img src="{{asset('images/lebar.svg')}}"><span style="font-size: 18px; font-weight: 200;">Lebar : </span>
-          <img src="{{asset('images/tinggi.svg')}}"><span style="font-size: 18px; font-weight: 200;">Tinggi : </span>
-          <img src="{{asset('images/panjang.svg')}}"><span style="font-size: 18px; font-weight: 200;">Panjang : </span>
-        </div>
-      </div>
-      <div>
-        <div class="title-berat">
-          <img src="{{asset('images/pickup.svg')}}">
-          <h4>PickUp</h4>
-          <span>
-            <img src="{{asset('images/berat.svg')}}" class="img-berat"><span class="berat" style="font-size: 18px; ">Kapasitas Berat : 1 Ton</span>
-          </span>
-        </div>
-
-        <div class="column">
-          <img src="{{asset('images/volume.svg')}}"><span style="font-size: 18px; font-weight: 200;">Volume : </span>
-          <img src="{{asset('images/lebar.svg')}}"><span style="font-size: 18px; font-weight: 200;">Lebar : </span>
-          <img src="{{asset('images/tinggi.svg')}}"><span style="font-size: 18px; font-weight: 200;">Tinggi : </span>
-          <img src="{{asset('images/panjang.svg')}}"><span style="font-size: 18px; font-weight: 200;">Panjang : </span>
-        </div>
-      </div>
-      <div>
-        <div class="title-berat">
-          <img src="{{asset('images/pickup.svg')}}">
-          <h4>PickUp</h4>
-          <span>
-            <img src="{{asset('images/berat.svg')}}" class="img-berat"><span class="berat" style="font-size: 18px; ">Kapasitas Berat : 1 Ton</span>
-          </span>
-        </div>
-
-        <div class="column">
-          <img src="{{asset('images/volume.svg')}}"><span style="font-size: 18px; font-weight: 200;">Volume : </span>
-          <img src="{{asset('images/lebar.svg')}}"><span style="font-size: 18px; font-weight: 200;">Lebar : </span>
-          <img src="{{asset('images/tinggi.svg')}}"><span style="font-size: 18px; font-weight: 200;">Tinggi : </span>
-          <img src="{{asset('images/panjang.svg')}}"><span style="font-size: 18px; font-weight: 200;">Panjang : </span>
-        </div>
-      </div>
-      <div>
-        <div class="title-berat">
-          <img src="{{asset('images/pickup.svg')}}">
-          <h4>PickUp</h4>
-          <span>
-            <img src="{{asset('images/berat.svg')}}" class="img-berat"><span class="berat" style="font-size: 18px; ">Kapasitas Berat : 1 Ton</span>
-          </span>
-        </div>
-
-        <div class="column">
-          <img src="{{asset('images/volume.svg')}}"><span style="font-size: 18px; font-weight: 200;">Volume : </span>
-          <img src="{{asset('images/lebar.svg')}}"><span style="font-size: 18px; font-weight: 200;">Lebar : </span>
-          <img src="{{asset('images/tinggi.svg')}}"><span style="font-size: 18px; font-weight: 200;">Tinggi : </span>
-          <img src="{{asset('images/panjang.svg')}}"><span style="font-size: 18px; font-weight: 200;">Panjang : </span>
-        </div>
-      </div>
-
+      <div class="swiper-button-next swiper-navBtn"></div>
+      <div class="swiper-button-prev swiper-navBtn"></div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 
@@ -286,16 +439,12 @@
       </div>
       <div class="container">
         <h1 class="us-title">20+</h1>
-        <p class="us-text">Memiliki lebih dari 20 Armada pengiriman</p>
+        <p class="us-text">Memiliki lebih dari 20 Armada dalam jasa pengiriman</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="footer-content">
-
-    </div>
-  </footer>
+  @include('layout.footer')
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -475,9 +624,14 @@
             // Simpan ID yang diterima ke dalam variabel dataId
             dataId = response.id;
             // Cek jika harga ditemukan atau tidak
-            if (response.harga) {
-              $('#harga_result').text(response.harga);
+            if (response.harga !== undefined) {
+              // Convert the price to a formatted string with dot as a thousand separator
+              var formattedPrice = response.harga.toLocaleString('id-ID');
+
+              // Update the price in the result container
+              $('#harga_result').text(formattedPrice);
             } else {
+              // If the price is not available, display "Hubungi Lebih Lanjut"
               $('#harga_result').text('Hubungi Lebih Lanjut');
             }
           },
@@ -486,26 +640,53 @@
           }
         });
       });
-
       $('#orderBtn').on('click', function(e) {
         e.preventDefault();
 
         // Periksa apakah dataId memiliki nilai yang valid
         if (dataId) {
-          // Redirect ke halaman stepper dengan menggunakan dataId sebagai parameter
-          window.location.href = '/orderstep/' + dataId;
+          // Check if the price is available
+          var hargaResult = $('#harga_result').text();
+          if (hargaResult !== 'Hubungi Lebih Lanjut') {
+            // Redirect to the order page only when the price is available
+            window.location.href = '/orderstep/' + dataId;
+          } else {
+            // Price is not available, disable the button or show an error message
+            alert('Harga tidak tersedia. Tidak dapat melakukan pemesanan.');
+          }
         } else {
-          console.log('Data ID tidak ditemukan.');
+          alert('Silahkan isi terlebih dahulu');
         }
       });
 
 
-
-
     });
   </script>
+  <script>
+    // Get all elements with class="closebtn"
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+    
+    // Loop through all close buttons
+    for (i = 0; i < close.length; i++) {
+      // When someone clicks on a close button
+      close[i].onclick = function(){
+    
+        // Get the parent of <span class="closebtn"> (<div class="alert">)
+        var div = this.parentElement;
+    
+        // Set the opacity of div to 0 (transparent)
+        div.style.opacity = "0";
+    
+        // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+    </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="{{asset('js/swipper-bundle.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
 </body>
 
 

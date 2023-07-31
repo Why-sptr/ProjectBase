@@ -175,10 +175,12 @@ class ShortTripSewaTrukController extends Controller
         $originProvinsi = $request->input('origin_provinsi');
         $originKabupaten = $request->input('origin_kabupaten');
         $originKecamatan = $request->input('origin_kecamatan');
+        $originKelurahan = $request->input('origin_kelurahan');
         $armada = $request->input('armada');
         $destinasiProvinsi = $request->input('destinasi_provinsi');
         $destinasiKabupaten = $request->input('destinasi_kabupaten');
         $destinasiKecamatan = $request->input('destinasi_kecamatan');
+        $destinasiKelurahan = $request->input('destinasi_kelurahan');
         $whatsapp = $request->input('whatsapp');
 
         // Query untuk mendapatkan harga dan jarak berdasarkan data yang diberikan
@@ -186,10 +188,12 @@ class ShortTripSewaTrukController extends Controller
             ->where('origin_provinsi', $originProvinsi)
             ->where('origin_kabupaten', $originKabupaten)
             ->where('origin_kecamatan', $originKecamatan)
+            ->where('origin_kelurahan', $originKelurahan)
             ->where('armada', $armada)
             ->where('destinasi_provinsi', $destinasiProvinsi)
             ->where('destinasi_kabupaten', $destinasiKabupaten)
             ->where('destinasi_kecamatan', $destinasiKecamatan)
+            ->where('destinasi_kelurahan', $destinasiKelurahan)
             ->select('harga', 'jarak')
             ->first();
 
@@ -199,10 +203,12 @@ class ShortTripSewaTrukController extends Controller
             $newHarga->origin_provinsi = $originProvinsi;
             $newHarga->origin_kabupaten = $originKabupaten;
             $newHarga->origin_kecamatan = $originKecamatan;
+            $newHarga->origin_kelurahan = $originKelurahan;
             $newHarga->armada = $armada;
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
+            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
             $newHarga->harga = $result->harga;
             $newHarga->jarak = $result->jarak;
             $newHarga->whatsapp = $whatsapp;
@@ -215,10 +221,12 @@ class ShortTripSewaTrukController extends Controller
             $newHarga->origin_provinsi = $originProvinsi;
             $newHarga->origin_kabupaten = $originKabupaten;
             $newHarga->origin_kecamatan = $originKecamatan;
+            $newHarga->origin_kelurahan = $originKelurahan;
             $newHarga->armada = $armada;
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
+            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
             $newHarga->harga = 0;
             $newHarga->jarak = 0;
             $newHarga->whatsapp = $whatsapp;
@@ -228,10 +236,10 @@ class ShortTripSewaTrukController extends Controller
         }
     }
 
-
+    // ubah return
     public function tampil($id)
     {
         $harga = OrderSewaTrukShort::find($id);
-        return view('orderstep', ['harga' => $harga]);
+        return view('ordersteptrukshort', ['harga' => $harga]);
     }
 }

@@ -178,11 +178,13 @@ class ShortTripPindahanController extends Controller
         $originProvinsi = $request->input('origin_provinsi');
         $originKabupaten = $request->input('origin_kabupaten');
         $originKecamatan = $request->input('origin_kecamatan');
+        $originKelurahan = $request->input('origin_kelurahan');
         $armada = $request->input('armada');
         $tkbm = $request->input('tkbm');
         $destinasiProvinsi = $request->input('destinasi_provinsi');
         $destinasiKabupaten = $request->input('destinasi_kabupaten');
         $destinasiKecamatan = $request->input('destinasi_kecamatan');
+        $destinasiKelurahan = $request->input('destinasi_kelurahan');
         $whatsapp = $request->input('whatsapp');
 
         // Query untuk mendapatkan harga dan jarak berdasarkan data yang diberikan
@@ -190,42 +192,52 @@ class ShortTripPindahanController extends Controller
             ->where('origin_provinsi', $originProvinsi)
             ->where('origin_kabupaten', $originKabupaten)
             ->where('origin_kecamatan', $originKecamatan)
+            ->where('origin_kelurahan', $originKelurahan)
             ->where('armada', $armada)
-            ->where('tkbm', $tkbm)
             ->where('destinasi_provinsi', $destinasiProvinsi)
             ->where('destinasi_kabupaten', $destinasiKabupaten)
             ->where('destinasi_kecamatan', $destinasiKecamatan)
+            ->where('destinasi_kelurahan', $destinasiKelurahan)
             ->select('harga', 'jarak')
             ->first();
 
         if ($result) {
+            // Adjust the price based on the number of people
+            $adjustedPrice = $result->harga + ($tkbm - 1) * 150000;
+
             // Simpan data ke database baru
             $newHarga = new OrderPindahanShort;
             $newHarga->origin_provinsi = $originProvinsi;
             $newHarga->origin_kabupaten = $originKabupaten;
             $newHarga->origin_kecamatan = $originKecamatan;
+            $newHarga->origin_kelurahan = $originKelurahan;
             $newHarga->armada = $armada;
             $newHarga->tkbm = $tkbm;
+            $newHarga->paket = 'default_value';
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = $result->harga;
+            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
+            $newHarga->harga = $adjustedPrice; // Save the adjusted price
             $newHarga->jarak = $result->jarak;
             $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
-            return response()->json(['harga' => $result->harga, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
+            return response()->json(['harga' => $adjustedPrice, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
         } else {
             // Simpan data ke database baru dengan harga dan jarak null
             $newHarga = new OrderPindahanShort;
             $newHarga->origin_provinsi = $originProvinsi;
             $newHarga->origin_kabupaten = $originKabupaten;
             $newHarga->origin_kecamatan = $originKecamatan;
+            $newHarga->origin_kelurahan = $originKelurahan;
             $newHarga->armada = $armada;
             $newHarga->tkbm = $tkbm;
+            $newHarga->paket = 'default_value';
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
+            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
             $newHarga->harga = 0;
             $newHarga->jarak = 0;
             $newHarga->whatsapp = $whatsapp;
@@ -239,6 +251,6 @@ class ShortTripPindahanController extends Controller
     public function tampil($id)
     {
         $harga = OrderPindahanShort::find($id);
-        return view('orderstep', ['harga' => $harga]);
+        return view('ordersteppindahanshort', ['harga' => $harga]);
     }
 }
