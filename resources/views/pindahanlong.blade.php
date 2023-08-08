@@ -15,7 +15,9 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -24,47 +26,43 @@
 </head>
 
 <style>
-    /* The alert message box */
-.alert {
-  padding: 20px;
-  background-color: #00F0FF; /* Hijau */
-  color: black;
-  font-weight: 500;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
+  /* The alert message box */
+  .alert {
+    padding: 20px;
+    background-color: #00F0FF;
+    /* Hijau */
+    color: black;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
 
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: black;
-}
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
 </style>
+
 <body>
-  <nav class="navbar bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="250" height="50">
-      </a>
-    </div>
-  </nav>
-  
-    @if(session('success'))
+  @include('layout.navbar')
+
+  @if(session('success'))
   <div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-   {{ session('success') }}
-</div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ session('success') }}
+  </div>
   @endif
 
   <section id="header">
@@ -692,23 +690,23 @@
     // Get all elements with class="closebtn"
     var close = document.getElementsByClassName("closebtn");
     var i;
-    
+
     // Loop through all close buttons
     for (i = 0; i < close.length; i++) {
       // When someone clicks on a close button
-      close[i].onclick = function(){
-    
+      close[i].onclick = function () {
+
         // Get the parent of <span class="closebtn"> (<div class="alert">)
         var div = this.parentElement;
-    
+
         // Set the opacity of div to 0 (transparent)
         div.style.opacity = "0";
-    
+
         // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
-        setTimeout(function(){ div.style.display = "none"; }, 600);
+        setTimeout(function () { div.style.display = "none"; }, 600);
       }
     }
-    </script>
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="{{asset('js/swipper-bundle.js')}}"></script>
