@@ -161,11 +161,11 @@ class LongTripPindahanController extends Controller
         $harga = DB::table('longtrip_pindahan')
             ->where('origin_provinsi', $originProvinsi)
             ->where('origin_kabupaten', $originKabupaten)
-            ->where('origin_kecamatan', $originKecamatan)
+            // ->where('origin_kecamatan', $originKecamatan)
             ->where('armada', $armada)
             ->where('destinasi_provinsi', $destinasiProvinsi)
             ->where('destinasi_kabupaten', $destinasiKabupaten)
-            ->where('destinasi_kecamatan', $destinasiKecamatan)
+            // ->where('destinasi_kecamatan', $destinasiKecamatan)
             ->value('harga');
 
         if ($harga) {

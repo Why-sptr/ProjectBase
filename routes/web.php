@@ -78,4 +78,7 @@ Route::post('/data/pindahan2', [ShortTripPindahanController::class, 'store'])->n
 
 Route::get('/ordersteppindahanshort/{id}', [ShortTripPindahanController::class, 'tampil'])->name('ordersteppindahanshort');
 
+// Error
+Route::get('/error/404', [IndoregionController::class, 'notfound'])->name('notfound');
+
 

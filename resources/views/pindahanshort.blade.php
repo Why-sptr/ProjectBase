@@ -190,12 +190,16 @@
               <span class="details">Armada</span>
               <select class="input" name="armada" id="armada" required>
                 <option>Pilih Armada</option>
-                <option value="PickUp">PickUp</option>
-                <option value="CDD">CDD</option>
-                <option value="CDE">CDE</option>
-                <option value="Fuso">Fuso</option>
-                <option value="Long">Long</option>
-                <option value="Box">Box</option>
+                <option value="pickup">PickUp</option>
+                <option value="L300">L300</option>
+                <option value="CDE Bak">CDE Bak</option>
+                <option value="CDE Box">CDE Box</option>
+                <option value="CDD Bak">CDD Bak</option>
+                <option value="CDD Box">CDD Box</option>
+                <option value="CDD Long Box">CDD Long Box</option>
+                <option value="Fuso Bak">Fuso Bak</option>
+                <option value="tronton bak/3away">Tronton Bak/3away</option>
+                <option value="tronton wing box/build up">Tronton Wing Box/Build Up</option>
               </select>
             </div>
           </div>

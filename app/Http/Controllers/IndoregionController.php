@@ -204,4 +204,8 @@ class IndoregionController extends Controller
         $harga = OrderSewaTrukLong::find($id);
         return view('orderstep', ['harga' => $harga]);
     }
+
+    public function notfound(){
+        return view('layout.notfound');
+    }
 }
