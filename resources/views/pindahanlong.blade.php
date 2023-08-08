@@ -143,35 +143,11 @@
             <div class="input-box">
               <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kecamatan" id="origin_kecamatan" required>
-                <option>== Pilih Kecamatan ==</option>
+                <option>== Pilih Salah Satu ==</option>
               </select>
             </div>
           </div>
-          <!-- Add this hidden input to store the ID -->
-          <input type="hidden" id="dataId" value="">
-          <div class="row">
-            <div class="input-box">
-              <span class="details">Kota Tujuan</span>
-              <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
-                <option>== Pilih Provinsi ==</option>
-                @foreach ($provinces as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="input-box">
-              <span class="details" style="color: #0B1C24;">.</span>
-              <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
-                <option>== Pilih Kabupaten ==</option>
-              </select>
-            </div>
-            <div class="input-box">
-              <span class="details" style="color: #0B1C24;">.</span>
-              <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
-                <option>== Pilih Kecamatan ==</option>
-              </select>
-            </div>
-          </div>
+
           <div class="row">
             <div class="input-box-wide">
               <span class="details">Armada</span>
@@ -187,6 +163,29 @@
                 <option value="Fuso Bak">Fuso Bak</option>
                 <option value="tronton bak/3away">Tronton Bak/3away</option>
                 <option value="tronton wing box/build up">Tronton Wing Box/Build Up</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-box">
+              <span class="details">Kota Tujuan</span>
+              <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
+                <option>== Pilih Salah Satu ==</option>
+                @foreach ($provinces as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="input-box">
+              <span class="details">.</span>
+              <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
+                <option>== Pilih Salah Satu ==</option>
+              </select>
+            </div>
+            <div class="input-box">
+              <span class="details">.</span>
+              <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
+                <option>== Pilih Salah Satu ==</option>
               </select>
             </div>
           </div>
