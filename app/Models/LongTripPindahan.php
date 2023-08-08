@@ -18,5 +18,6 @@ class LongTripPindahan extends Model
         'destinasi_kecamatan',
         'armada',
         'harga',
+        'tkbm',
     ];
 }

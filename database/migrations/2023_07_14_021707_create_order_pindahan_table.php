@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('destinasi_kecamatan')->nullable();
             $table->enum('armada',['PickUp','CDD','CDE','Fuso','Long','Box'])->nullable();
             $table->enum('tkbm',['1 Orang','2 Orang','3 Orang','4 Orang','5 Orang','6 Orang'])->nullable();
-            $table->enum('lantai',['lantai 1','lantai 2','lantai 3','lantai 4','lantai 5','lantai 6'])->nullable();
             $table->unsignedBigInteger('harga')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('nama')->nullable();

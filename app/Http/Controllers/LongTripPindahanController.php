@@ -24,7 +24,7 @@ class LongTripPindahanController extends Controller
         $provinces = Province::all();
         return view('pindahanlong', compact('provinces'));
     }
-    
+
     public function kabupaten(Request $request)
     {
         $id_provinsi = $request->id_provinsi;
@@ -156,19 +156,22 @@ class LongTripPindahanController extends Controller
         $destinasiKecamatan = $request->input('destinasi_kecamatan');
         $whatsapp = $request->input('whatsapp');
 
+
         // Query untuk mendapatkan harga berdasarkan data yang diberikan
         $harga = DB::table('longtrip_pindahan')
             ->where('origin_provinsi', $originProvinsi)
             ->where('origin_kabupaten', $originKabupaten)
-            ->where('origin_kecamatan', $originKecamatan)
+            // ->where('origin_kecamatan', $originKecamatan)
             ->where('armada', $armada)
-            ->where('tkbm', $tkbm)
             ->where('destinasi_provinsi', $destinasiProvinsi)
             ->where('destinasi_kabupaten', $destinasiKabupaten)
-            ->where('destinasi_kecamatan', $destinasiKecamatan)
+            // ->where('destinasi_kecamatan', $destinasiKecamatan)
             ->value('harga');
 
         if ($harga) {
+            // Adjust the price based on the number of people
+            $adjustedPrice = $harga + ($tkbm - 1) * 150000;
+
             // Simpan data ke database baru
             $newHarga = new OrderPindahanLong;
             $newHarga->origin_provinsi = $originProvinsi;
@@ -176,14 +179,15 @@ class LongTripPindahanController extends Controller
             $newHarga->origin_kecamatan = $originKecamatan;
             $newHarga->armada = $armada;
             $newHarga->tkbm = $tkbm;
+            $newHarga->paket = 'default_value';
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = $harga;
+            $newHarga->harga = $adjustedPrice; // Save the adjusted price
             $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
 
-            return response()->json(['harga' => $harga, 'id' => $newHarga->id]);
+            return response()->json(['harga' => $adjustedPrice, 'id' => $newHarga->id]);
         } else {
             // Simpan data ke database baru dengan harga null
             $newHarga = new OrderPindahanLong;
@@ -192,6 +196,7 @@ class LongTripPindahanController extends Controller
             $newHarga->origin_kecamatan = $originKecamatan;
             $newHarga->armada = $armada;
             $newHarga->tkbm = $tkbm;
+            $newHarga->paket = 'default_value';
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
@@ -201,5 +206,11 @@ class LongTripPindahanController extends Controller
 
             return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
         }
+    }
+
+    public function tampil($id)
+    {
+        $harga = OrderPindahanLong::find($id);
+        return view('ordersteppindahanlong', ['harga' => $harga]);
     }
 }

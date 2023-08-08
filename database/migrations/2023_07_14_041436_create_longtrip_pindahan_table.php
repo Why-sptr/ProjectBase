@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('destinasi_provinsi');
             $table->string('destinasi_kabupaten');
             $table->string('destinasi_kecamatan');
-            $table->enum('tkbm',['1 Orang','2 Orang','3 Orang','4 Orang','5 Orang','6 Orang']);
             $table->enum('armada',['PickUp','CDD','CDE','Fuso','Long','Box']);
             $table->unsignedBigInteger('harga');
             $table->timestamps();
