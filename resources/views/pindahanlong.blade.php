@@ -143,50 +143,45 @@
             <div class="input-box">
               <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kecamatan" id="origin_kecamatan" required>
-                <option>== Pilih Kecamatan ==</option>
+                <option>== Pilih Salah Satu ==</option>
               </select>
             </div>
           </div>
-          <!-- Add this hidden input to store the ID -->
-          <input type="hidden" id="dataId" value="">
+
+          <div class="row">
+            <div class="input-box-wide">
+              <span class="details">Armada</span>
+              <select class="input" name="armada" id="armada" required>
+                <option>Pilih Armada</option>
+                <option value="PickUp">PickUp</option>
+                <option value="CDD">CDD</option>
+                <option value="CDE">CDE</option>
+                <option value="Fuso">Fuso</option>
+                <option value="Long">Long</option>
+                <option value="Box">Box</option>
+              </select>
+            </div>
+          </div>
           <div class="row">
             <div class="input-box">
               <span class="details">Kota Tujuan</span>
               <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
-                <option>== Pilih Provinsi ==</option>
+                <option>== Pilih Salah Satu ==</option>
                 @foreach ($provinces as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="input-box">
-              <span class="details" style="color: #0B1C24;">.</span>
+              <span class="details">.</span>
               <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
-                <option>== Pilih Kabupaten ==</option>
+                <option>== Pilih Salah Satu ==</option>
               </select>
             </div>
             <div class="input-box">
-              <span class="details" style="color: #0B1C24;">.</span>
+              <span class="details">.</span>
               <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
-                <option>== Pilih Kecamatan ==</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-box-wide">
-              <span class="details">Armada</span>
-              <select class="input" name="armada" id="armada" required>
-                <option>Pilih Armada</option>
-                <option value="pickup">PickUp</option>
-                <option value="L300">L300</option>
-                <option value="CDE Bak">CDE Bak</option>
-                <option value="CDE Box">CDE Box</option>
-                <option value="CDD Bak">CDD Bak</option>
-                <option value="CDD Box">CDD Box</option>
-                <option value="CDD Long Box">CDD Long Box</option>
-                <option value="Fuso Bak">Fuso Bak</option>
-                <option value="tronton bak/3away">Tronton Bak/3away</option>
-                <option value="tronton wing box/build up">Tronton Wing Box/Build Up</option>
+                <option>== Pilih Salah Satu ==</option>
               </select>
             </div>
           </div>

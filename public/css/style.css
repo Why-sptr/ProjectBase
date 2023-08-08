@@ -44,9 +44,9 @@ nav {
 
 
 .text-header h1 {
-    font-size: 34px;
+    font-size: 30px;
     margin-top: 100px;
-    width: 700px;
+    width: 600px;
     font-weight: 700;
 }
 
@@ -281,151 +281,11 @@ a {
 
 .armada-p {
     width: 800px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
-/* Card Armada */
-.slider-container {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1640px;
-    width: 100%;
-    padding: 40px;
-}
-
-.slide-content {
-    margin: 0 40px;
-    overflow: hidden;
-    border-radius: 25px;
-}
-
-.card-armada {
-    border-radius: 25px;
-    background-color: #0B1C24;
-}
-
-.card-armada-image {
-    position: relative;
-    height: 150px;
-    width: 250px;
-    padding: 3px;
-}
-
-.card-armada-image .card-armada-img {
-    height: 100%;
-    width: 100%;
-}
-
-.image-content,
-.card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 14px;
-}
-
-.image-content {
-    position: relative;
-    row-gap: 5px;
-    padding: 25px 0;
-}
-
-.overlay{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 25px 25px 0 25px;
-    background-color: #324852;
-}
-
-.name {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.description {
-    margin-top: -10px;
-    font-size: 16px;
-    text-align: center;
-}
-
-
-/* Footer */
-.footer1 {
-    margin-left: -8%;
-    margin-right: -5.5%;
-    margin-bottom: -2%;
-    background: #000000;
-    margin-top: 100px;
-}
-
-.footer {
-    margin-left: 5%;
-    margin-right: 5%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-    gap: 3.5rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.footer-content h4 {
-    color: #fff;
-    margin-bottom: 1.5rem;
-    font-size: 26px;
-}
-
-.footer-content h5 {
-    color: #A3BCFF;
-    margin-bottom: 1.5rem;
-    font-size: 20px;
-}
-
-.footer-content li {
-    margin-bottom: 16px;
-}
-
-.footer-content li a {
-    display: block;
-    color: #d6d6d6;
-    font-size: 15px;
-    font-weight: 400;
-    max-width: 500px;
-    transition: all .40s ease;
-}
-
-.footer-content li a:hover {
-    transform: translateY(-3px) translateX(-5px);
-    color: #fff;
-}
-
-.footer-content p {
-    color: #d6d6d6;
-    font-size: 26px;
-    line-height: 30px;
-    margin: 20px 0;
-}
-
-.icons a {
-    display: inline-block;
-    font-size: 22px;
-    color: #d6d6d6;
-    margin-right: 17px;
-    transition: all .40s ease;
-}
-
-.icons a:hover {
-    transform: translateY(-3px) translateX(-5px);
-    color: #fff;
-}
-
-@media (max-width: 834px) {
+@media (max-width: 768px) {
     .container {
         flex-direction: column;
     }
