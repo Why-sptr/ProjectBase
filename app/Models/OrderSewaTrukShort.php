@@ -22,6 +22,7 @@ class OrderSewaTrukShort extends Model
         'jarak',
         'harga',
         'whatsapp',
+        'user_id',
         'nama',
         'email',
         'home_provinsi',
@@ -33,5 +34,10 @@ class OrderSewaTrukShort extends Model
         'detail_alamat_destinasi',
         'rencana_kirim',
     ];
+
+    public function user2()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

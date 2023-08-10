@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ShortTripSewaTrukController;
 use App\Http\Controllers\HargaController;
 use App\Http\Controllers\IndoregionController;
@@ -23,21 +24,32 @@ Route::get('/cekharga', function () {
 });
 Route::get('/', [IndoregionController::class, 'cekongkir'])->name('cekongkir');
 
-// Route Untuk Sewa Truk Long Trip
-Route::post('/datas', [HargaController::class, 'cekHarga'])->name('datas');
-Route::get('/cekongkir', [IndoregionController::class, 'cekongkir'])->name('cekongkir');
-Route::get('/tambahdata', [IndoregionController::class, 'kota'])->name('kota');
-Route::post('/kabupaten', [IndoregionController::class, 'kabupaten'])->name('kabupaten');
-Route::post('/kecamatan', [IndoregionController::class, 'kecamatan'])->name('kecamatan');
-Route::post('/kabupatencek', [IndoregionController::class, 'kabupatencek'])->name('kabupatencek');
-Route::post('/kecamatancek', [IndoregionController::class, 'kecamatancek'])->name('kecamatancek');
-Route::post('/data', [IndoregionController::class, 'store'])->name('data.store');
+Route::get('/login', function () {
+    return view('layout/login');
+})->name('login');
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [GoogleController::class, 'hadleGoogleCallback'])->name('google.callback');
+Route::get('/logout',[GoogleController::class, 'logout'])->name('logout');
 
-// Route::get('/orderan/{id}', [IndoregionController::class, 'tampil']);
-Route::get('/orderstep/{id}', [IndoregionController::class, 'tampil'])->name('orderstep');
-Route::get('/order', function () {
-    return view('orderstep');
+
+// Route Untuk Sewa Truk Long Trip
+Route::middleware(['auth'])->group(function () {
+    Route::post('/datas', [HargaController::class, 'cekHarga'])->name('datas');
+    Route::get('/tambahdata', [IndoregionController::class, 'kota'])->name('kota');
+    Route::post('/kabupaten', [IndoregionController::class, 'kabupaten'])->name('kabupaten');
+    Route::post('/kecamatan', [IndoregionController::class, 'kecamatan'])->name('kecamatan');
+    Route::post('/kabupatencek', [IndoregionController::class, 'kabupatencek'])->name('kabupatencek');
+    Route::post('/kecamatancek', [IndoregionController::class, 'kecamatancek'])->name('kecamatancek');
+    Route::post('/data', [IndoregionController::class, 'store'])->name('data.store');
+    
+    // Route::get('/orderan/{id}', [IndoregionController::class, 'tampil']);
+    Route::get('/orderstep/{id}', [IndoregionController::class, 'tampil'])->name('orderstep');
+    Route::get('/order', function () {
+        return view('orderstep');
+    });
 });
+
+Route::get('/cekongkir', [IndoregionController::class, 'cekongkir'])->name('cekongkir');
 
 // Route Untuk Sewa Truk Short Trip
 Route::post('/shortsewa', [ShortTripSewaTrukController::class, 'cekHarga'])->name('shortsewa');

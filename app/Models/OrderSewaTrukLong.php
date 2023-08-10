@@ -20,6 +20,7 @@ class OrderSewaTrukLong extends Model
         'armada',
         'harga',
         'whatsapp',
+        'user_id',
         'nama',
         'email',
         'jenis_kelamin',
@@ -31,5 +32,10 @@ class OrderSewaTrukLong extends Model
         'detail_alamat_destinasi',
         'rencana_kirim',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

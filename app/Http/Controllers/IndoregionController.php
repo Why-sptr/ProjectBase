@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\OrderSewaTrukLong;
 use Illuminate\Support\Facades\DB;
 use App\Models\Village;
-use App\Models\OrderSewaTrukLong;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class IndoregionController extends Controller
 {
@@ -63,11 +65,6 @@ class IndoregionController extends Controller
         return response()->json($kecamatans);
     }
 
-    public function create()
-    {
-        return view('data.create');
-    }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -104,17 +101,6 @@ class IndoregionController extends Controller
         return redirect()->route('kota')
             ->with('success', 'Data created successfully.');
     }
-    public function index()
-    {
-        $data = LongTripTruk::all();
-
-        return view('sewatruklong', compact('data'));
-    }
-
-    public function edit(LongTripTruk $data)
-    {
-        return view('data.edit', compact('data'));
-    }
 
     public function update(Request $request, LongTripTruk $data)
     {
@@ -135,14 +121,6 @@ class IndoregionController extends Controller
             ->with('success', 'Data updated successfully.');
     }
 
-    public function destroy(LongTripTruk $data)
-    {
-        $data->delete();
-
-        return redirect()->route('kota')
-            ->with('success', 'Data deleted successfully.');
-    }
-
     public function cekHarga(Request $request)
     {
         // Ambil data dari permintaan
@@ -159,14 +137,15 @@ class IndoregionController extends Controller
         $harga = DB::table('longtrip_truk')
             ->where('origin_provinsi', $originProvinsi)
             ->where('origin_kabupaten', $originKabupaten)
-            ->where('origin_kecamatan', $originKecamatan)
             ->where('armada', $armada)
             ->where('destinasi_provinsi', $destinasiProvinsi)
             ->where('destinasi_kabupaten', $destinasiKabupaten)
-            ->where('destinasi_kecamatan', $destinasiKecamatan)
             ->value('harga');
 
-        if ($harga) {
+        // Pastikan user terautentikasi sebelum melanjutkan
+        if (Auth::check()) {
+            $user = auth()->user();
+
             // Simpan data ke database baru
             $newHarga = new OrderSewaTrukLong;
             $newHarga->origin_provinsi = $originProvinsi;
@@ -176,26 +155,15 @@ class IndoregionController extends Controller
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = $harga;
+            $newHarga->harga = $harga ?? 0;  // Menggunakan harga jika ada, jika tidak gunakan 0
             $newHarga->whatsapp = $whatsapp;
+            $newHarga->user_id = $user->id;  // Mengatur ID user
+
             $newHarga->save();
 
-            return response()->json(['harga' => $harga, 'id' => $newHarga->id]);
+            return response()->json(['harga' => $harga, 'id' => $newHarga->id,]);
         } else {
-            // Simpan data ke database baru dengan harga null
-            $newHarga = new OrderSewaTrukLong;
-            $newHarga->origin_provinsi = $originProvinsi;
-            $newHarga->origin_kabupaten = $originKabupaten;
-            $newHarga->origin_kecamatan = $originKecamatan;
-            $newHarga->armada = $armada;
-            $newHarga->destinasi_provinsi = $destinasiProvinsi;
-            $newHarga->destinasi_kabupaten = $destinasiKabupaten;
-            $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = 0;
-            $newHarga->whatsapp = $whatsapp;
-            $newHarga->save();
-
-            return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
+            return response()->json(['message' => 'Pengguna tidak terautentikasi'], 401);
         }
     }
 
@@ -203,9 +171,5 @@ class IndoregionController extends Controller
     {
         $harga = OrderSewaTrukLong::find($id);
         return view('orderstep', ['harga' => $harga]);
-    }
-
-    public function notfound(){
-        return view('layout.notfound');
     }
 }

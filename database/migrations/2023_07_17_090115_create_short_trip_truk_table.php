@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('destinasi_kecamatan');
             $table->string('destinasi_kelurahan');
             $table->string('jarak');
-            $table->enum('armada',['PickUp','CDD','CDE','Fuso','Long','Box']);
+            $table->enum('armada',['pickup','L300','CDE Bak','CDE Box','CDD Bak','CDD Box','CDD Long Box','Fuso Bak','Fuso Box','tronton bak/3away','tronton wing box/build up']);
             $table->unsignedBigInteger('harga');
             $table->timestamps();
         });

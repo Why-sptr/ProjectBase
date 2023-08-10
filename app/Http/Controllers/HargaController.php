@@ -6,35 +6,39 @@ use App\Models\OrderSewaTrukLong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HargaController extends Controller
 {
     public function cekHarga(Request $request)
     {
-        // Ambil data dari permintaan
-        $originProvinsi = $request->input('origin_provinsi');
-        $originKabupaten = $request->input('origin_kabupaten');
-        $originKecamatan = $request->input('origin_kecamatan');
-        $armada = $request->input('armada');
-        $destinasiProvinsi = $request->input('destinasi_provinsi');
-        $destinasiKabupaten = $request->input('destinasi_kabupaten');
-        $destinasiKecamatan = $request->input('destinasi_kecamatan');
-        $whatsapp = $request->input('whatsapp');
-
-        // Query untuk mendapatkan harga berdasarkan data yang diberikan
-        $harga = DB::table('longtrip_truk')
-            ->where('origin_provinsi', $originProvinsi)
-            ->where('origin_kabupaten', $originKabupaten)
-            ->where('origin_kecamatan', $originKecamatan)
-            ->where('armada', $armada)
-            ->where('destinasi_provinsi', $destinasiProvinsi)
-            ->where('destinasi_kabupaten', $destinasiKabupaten)
-            ->where('destinasi_kecamatan', $destinasiKecamatan)
-            ->value('harga');
-
-        if ($harga) {
+        // Check if the user is logged in
+        if (Auth::check()) {
+            // Retrieve the user ID
+            $userId = Auth::id();
+    
+            // Ambil data dari permintaan
+            $originProvinsi = $request->input('origin_provinsi');
+            $originKabupaten = $request->input('origin_kabupaten');
+            $originKecamatan = $request->input('origin_kecamatan');
+            $armada = $request->input('armada');
+            $destinasiProvinsi = $request->input('destinasi_provinsi');
+            $destinasiKabupaten = $request->input('destinasi_kabupaten');
+            $destinasiKecamatan = $request->input('destinasi_kecamatan');
+            $whatsapp = $request->input('whatsapp');
+    
+            // Query untuk mendapatkan harga berdasarkan data yang diberikan
+            $harga = DB::table('longtrip_truk')
+                ->where('origin_provinsi', $originProvinsi)
+                ->where('origin_kabupaten', $originKabupaten)
+                ->where('armada', $armada)
+                ->where('destinasi_provinsi', $destinasiProvinsi)
+                ->where('destinasi_kabupaten', $destinasiKabupaten)
+                ->value('harga');
+    
             // Simpan data ke database baru
             $newHarga = new OrderSewaTrukLong;
+            $newHarga->user_id = $userId; // Associate user ID
             $newHarga->origin_provinsi = $originProvinsi;
             $newHarga->origin_kabupaten = $originKabupaten;
             $newHarga->origin_kecamatan = $originKecamatan;
@@ -42,26 +46,24 @@ class HargaController extends Controller
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = $harga;
+            
+            if ($harga !== null) {
+                $newHarga->harga = $harga;
+            } else {
+                $newHarga->harga = 0;
+                $newHarga->whatsapp = $whatsapp;
+                $newHarga->save();
+    
+                return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
+            }
+            
             $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
-
-            return response()->json(['harga' => $harga, 'id' => $newHarga->id]);
+    
+            return response()->json(['harga' => $newHarga->harga, 'id' => $newHarga->id]);
         } else {
-            // Simpan data ke database baru dengan harga null
-            $newHarga = new OrderSewaTrukLong;
-            $newHarga->origin_provinsi = $originProvinsi;
-            $newHarga->origin_kabupaten = $originKabupaten;
-            $newHarga->origin_kecamatan = $originKecamatan;
-            $newHarga->armada = $armada;
-            $newHarga->destinasi_provinsi = $destinasiProvinsi;
-            $newHarga->destinasi_kabupaten = $destinasiKabupaten;
-            $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->harga = 0;
-            $newHarga->whatsapp = $whatsapp;
-            $newHarga->save();
-
-            return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
+            // User is not logged in, handle accordingly
+            return response()->json(['message' => 'User not logged in']);
         }
     }
 
