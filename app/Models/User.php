@@ -20,7 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'google_id',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -41,4 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(OrderSewaTrukLong::class);
+    }
+
+    public function orders2()
+    {
+        return $this->hasMany(OrderSewaTrukShort::class);
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\District;
 use App\Models\ShortTripTruk;
 use App\Models\Village;
 use App\Models\OrderSewaTrukShort;
+use Illuminate\Support\Facades\Auth;
 
 class ShortTripSewaTrukController extends Controller
 {
@@ -171,68 +172,79 @@ class ShortTripSewaTrukController extends Controller
 
     public function cekHarga(Request $request)
     {
-        // Ambil data dari permintaan
-        $originProvinsi = $request->input('origin_provinsi');
-        $originKabupaten = $request->input('origin_kabupaten');
-        $originKecamatan = $request->input('origin_kecamatan');
-        $originKelurahan = $request->input('origin_kelurahan');
-        $armada = $request->input('armada');
-        $destinasiProvinsi = $request->input('destinasi_provinsi');
-        $destinasiKabupaten = $request->input('destinasi_kabupaten');
-        $destinasiKecamatan = $request->input('destinasi_kecamatan');
-        $destinasiKelurahan = $request->input('destinasi_kelurahan');
-        $whatsapp = $request->input('whatsapp');
+        // Check if the user is logged in
+        if (Auth::check()) {
+            // Retrieve the user ID
+            $userId = Auth::id();
 
-        // Query untuk mendapatkan harga dan jarak berdasarkan data yang diberikan
-        $result = DB::table('short_trip_truk')
-            ->where('origin_provinsi', $originProvinsi)
-            ->where('origin_kabupaten', $originKabupaten)
-            ->where('origin_kecamatan', $originKecamatan)
-            ->where('origin_kelurahan', $originKelurahan)
-            ->where('armada', $armada)
-            ->where('destinasi_provinsi', $destinasiProvinsi)
-            ->where('destinasi_kabupaten', $destinasiKabupaten)
-            ->where('destinasi_kecamatan', $destinasiKecamatan)
-            ->where('destinasi_kelurahan', $destinasiKelurahan)
-            ->select('harga', 'jarak')
-            ->first();
+            // Ambil data dari permintaan
+            $originProvinsi = $request->input('origin_provinsi');
+            $originKabupaten = $request->input('origin_kabupaten');
+            $originKecamatan = $request->input('origin_kecamatan');
+            $originKelurahan = $request->input('origin_kelurahan');
+            $armada = $request->input('armada');
+            $destinasiProvinsi = $request->input('destinasi_provinsi');
+            $destinasiKabupaten = $request->input('destinasi_kabupaten');
+            $destinasiKecamatan = $request->input('destinasi_kecamatan');
+            $destinasiKelurahan = $request->input('destinasi_kelurahan');
+            $whatsapp = $request->input('whatsapp');
 
-        if ($result) {
-            // Simpan data ke database baru
-            $newHarga = new OrderSewaTrukShort;
-            $newHarga->origin_provinsi = $originProvinsi;
-            $newHarga->origin_kabupaten = $originKabupaten;
-            $newHarga->origin_kecamatan = $originKecamatan;
-            $newHarga->origin_kelurahan = $originKelurahan;
-            $newHarga->armada = $armada;
-            $newHarga->destinasi_provinsi = $destinasiProvinsi;
-            $newHarga->destinasi_kabupaten = $destinasiKabupaten;
-            $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
-            $newHarga->harga = $result->harga;
-            $newHarga->jarak = $result->jarak;
-            $newHarga->whatsapp = $whatsapp;
-            $newHarga->save();
+            // Query untuk mendapatkan harga dan jarak berdasarkan data yang diberikan
+            $result = DB::table('short_trip_truk')
+                ->where('origin_provinsi', $originProvinsi)
+                ->where('origin_kabupaten', $originKabupaten)
+                ->where('origin_kecamatan', $originKecamatan)
+                ->where('origin_kelurahan', $originKelurahan)
+                ->where('armada', $armada)
+                ->where('destinasi_provinsi', $destinasiProvinsi)
+                ->where('destinasi_kabupaten', $destinasiKabupaten)
+                ->where('destinasi_kecamatan', $destinasiKecamatan)
+                ->where('destinasi_kelurahan', $destinasiKelurahan)
+                ->select('harga', 'jarak')
+                ->first();
 
-            return response()->json(['harga' => $result->harga, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
+            if ($result) {
+                // Simpan data ke database baru
+                $newHarga = new OrderSewaTrukShort;
+                $newHarga->user_id = $userId; // Associate user ID
+                $newHarga->origin_provinsi = $originProvinsi;
+                $newHarga->origin_kabupaten = $originKabupaten;
+                $newHarga->origin_kecamatan = $originKecamatan;
+                $newHarga->origin_kelurahan = $originKelurahan;
+                $newHarga->armada = $armada;
+                $newHarga->destinasi_provinsi = $destinasiProvinsi;
+                $newHarga->destinasi_kabupaten = $destinasiKabupaten;
+                $newHarga->destinasi_kecamatan = $destinasiKecamatan;
+                $newHarga->destinasi_kelurahan = $destinasiKelurahan;
+                $newHarga->harga = $result->harga;
+                $newHarga->jarak = $result->jarak;
+                $newHarga->whatsapp = $whatsapp;
+                $newHarga->save();
+
+                return response()->json(['harga' => $result->harga, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
+            } else {
+                // Simpan data ke database baru dengan harga dan jarak null
+                $newHarga = new OrderSewaTrukShort;
+                $newHarga->user_id = $userId; // Associate user ID
+                $newHarga->origin_provinsi = $originProvinsi;
+                $newHarga->origin_kabupaten = $originKabupaten;
+                $newHarga->origin_kecamatan = $originKecamatan;
+                $newHarga->origin_kelurahan = $originKelurahan;
+                $newHarga->armada = $armada;
+                $newHarga->destinasi_provinsi = $destinasiProvinsi;
+                $newHarga->destinasi_kabupaten = $destinasiKabupaten;
+                $newHarga->destinasi_kecamatan = $destinasiKecamatan;
+                $newHarga->destinasi_kelurahan = $destinasiKelurahan;
+                $newHarga->harga = 0;
+                $newHarga->jarak = 0;
+                $newHarga->whatsapp = $whatsapp;
+                $newHarga->save();
+
+                return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
+            }
         } else {
-            // Simpan data ke database baru dengan harga dan jarak null
-            $newHarga = new OrderSewaTrukShort;
-            $newHarga->origin_provinsi = $originProvinsi;
-            $newHarga->origin_kabupaten = $originKabupaten;
-            $newHarga->origin_kecamatan = $originKecamatan;
-            $newHarga->origin_kelurahan = $originKelurahan;
-            $newHarga->armada = $armada;
-            $newHarga->destinasi_provinsi = $destinasiProvinsi;
-            $newHarga->destinasi_kabupaten = $destinasiKabupaten;
-            $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            $newHarga->destinasi_kelurahan = $destinasiKelurahan;
-            $newHarga->harga = 0;
-            $newHarga->jarak = 0;
-            $newHarga->whatsapp = $whatsapp;
-            $newHarga->save();
-
-            return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
+            // User is not logged in, handle accordingly
+            return response()->json(['message' => 'User not logged in']);
         }
     }
 

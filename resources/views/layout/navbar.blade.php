@@ -1,28 +1,55 @@
 <header>
-    <div class="navbar">
-      <a class="navbar-brand" href="#">
-        <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="250" height="50">
-      </a>
-      <ul class="links">
-        <li><a href="riwayat">Riwayat</a></li>
-        <li><a href="riwayat">Truk-Long</a></li>
-        <li><a href="riwayat">Truk-Short</a></li>
-        <li><a href="riwayat">Pindahan-Long</a></li>
-        <li><a href="riwayat">Pindahan-Short</a></li>
-      </ul>
-      <a href="#" class="action_btn">Ayo Mulai</a>
-      <div class="toogle_btn">
-        <i class="fa-solid fa-bars"></i>
+  <div class="navbar">
+    <a class="navbar-brand" href="#">
+      <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="250" height="50">
+    </a>
+    <ul class="links">
+      <li><a href="riwayat">Riwayat</a></li>
+      <li><a href="riwayat">Truk-Long</a></li>
+      <li><a href="riwayat">Truk-Short</a></li>
+      <li><a href="riwayat">Pindahan-Long</a></li>
+      <li><a href="riwayat">Pindahan-Short</a></li>
+    </ul>
+    <!-- In your HTML file -->
+    <!-- In your HTML file -->
+    <div class="profile-dropdown">
+      <div class="profile-trigger" onclick="toggleDropdown()">
+        <img class="profile" src="{{ Auth::check() ? Auth::user()->profile_picture : asset('images/profile.svg') }}" alt="Avatar">
+        <span class="caret"></span>
+      </div>
+      <div id="dropdown-content" class="dropdown-content">
+        @if (Auth::check())
+        <a href="#">Profile</a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          Logout
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
+          @csrf
+        </form>
+        @else
+        <a href="login">Login</a>
+        @endif
       </div>
     </div>
 
-    <div class="dropdown_menu">
-        <li><a href="riwayat">Riwayat</a></li>
-        <li><a href="riwayat">Truk-Long</a></li>
-        <li><a href="riwayat">Truk-Short</a></li>
-        <li><a href="riwayat">Pindahan-Long</a></li>
-        <li><a href="riwayat">Pindahan-Short</a></li>
-        <li><a href="#" class="action_btn">Ayo Mulai</a></li>
+    <div class="toogle_btn">
+      <i class="fa-solid fa-bars"></i>
     </div>
+  </div>
 
-  </header>
+  <div class="dropdown_menu">
+    <li><a href="riwayat">Riwayat</a></li>
+    <li><a href="riwayat">Truk-Long</a></li>
+    <li><a href="riwayat">Truk-Short</a></li>
+    <li><a href="riwayat">Pindahan-Long</a></li>
+    <li><a href="riwayat">Pindahan-Short</a></li>
+  </div>
+
+</header>
+
+<script>
+  function toggleDropdown() {
+    var dropdown = document.getElementById('dropdown-content');
+    dropdown.classList.toggle('active');
+  }
+</script>

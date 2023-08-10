@@ -11,13 +11,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -26,18 +22,14 @@
 </head>
 
 <style>
-  /* The alert message box */
   .alert {
     padding: 20px;
     background-color: #00F0FF;
-    /* Hijau */
     color: black;
     font-weight: 500;
     border-radius: 10px;
     margin-bottom: 15px;
   }
-
-  /* The close button */
   .closebtn {
     margin-left: 15px;
     color: white;
@@ -48,8 +40,6 @@
     cursor: pointer;
     transition: 0.3s;
   }
-
-  /* When moving the mouse over the close button */
   .closebtn:hover {
     color: black;
   }
@@ -68,6 +58,11 @@
   <section id="header">
     <div class="container-header">
       <div class="text-header">
+        @if (Auth::check())
+        <p class="greeting">Hello, {{ Auth::user()->name }}</p>
+        @else
+        <p class="greeting">Hello, Guest</p>
+        @endif
         <h1>Temukan Harga Tempat Tujuan Anda Dengan Cepat dan Terjangkau</h1>
         <h2>Dengan menggunakan jasa kami barang anda akan terjamin keamanannya</h2>
         <p>Anda mau sewa jasa apa nih? Pilih jasa kami dibawah ini untuk mengetahui lebih rinci harga setiap jasa yang
@@ -113,8 +108,7 @@
     <div class="flex-button">
       <a href="#"><button><img src="{{asset('images/luarkota.svg')}}" class="img-button">Luar
           Kota</button></a>
-      <a href="/cekongkirdalamkota2"><button class="button2"><img src="{{asset('images/short.svg')}}"
-            class="img-button">Dalam
+      <a href="/cekongkirdalamkota2"><button class="button2"><img src="{{asset('images/short.svg')}}" class="img-button">Dalam
           Kota</button></a>
     </div>
 
@@ -132,6 +126,8 @@
                 @endforeach
               </select>
             </div>
+             <!-- Add this hidden input to store the ID -->
+             <input type="hidden" id="dataId" value="">
             <div class="input-box">
               <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kabupaten" id="origin_kabupaten" required>
@@ -145,7 +141,29 @@
               </select>
             </div>
           </div>
-
+          <div class="row">
+            <div class="input-box">
+              <span class="details">Kota Tujuan</span>
+              <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
+                <option>== Pilih Salah Satu ==</option>
+                @foreach ($provinces as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="input-box">
+              <span class="details" style="color: #0B1C24;">.</span>
+              <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
+                <option>== Pilih Salah Satu ==</option>
+              </select>
+            </div>
+            <div class="input-box">
+              <span class="details" style="color: #0B1C24;">.</span>
+              <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
+                <option>== Pilih Salah Satu ==</option>
+              </select>
+            </div>
+          </div>
           <div class="row">
             <div class="input-box-wide">
               <span class="details">Armada</span>
@@ -165,35 +183,15 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-box">
-              <span class="details">Kota Tujuan</span>
-              <select class="input" name="destinasi_provinsi" id="destinasi_provinsi" required>
-                <option>== Pilih Salah Satu ==</option>
-                @foreach ($provinces as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="input-box">
-              <span class="details">.</span>
-              <select class="input" name="destinasi_kabupaten" id="destinasi_kabupaten" required>
-                <option>== Pilih Salah Satu ==</option>
-              </select>
-            </div>
-            <div class="input-box">
-              <span class="details">.</span>
-              <select class="input" name="destinasi_kecamatan" id="destinasi_kecamatan" required>
-                <option>== Pilih Salah Satu ==</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
             <div class="input-box-wide">
               <span class="details">Jumlah Helper</span>
               <select class="input" name="tkbm" id="tkbm" required>
                 <option value="1">1 Orang</option>
                 <option value="2">2 Orang</option>
                 <option value="3">3 Orang</option>
+                <option value="4">4 Orang</option>
+                <option value="5">5 Orang</option>
+                <option value="6">6 Orang</option>
                 <!-- Add more options if needed -->
               </select>
             </div>
@@ -205,9 +203,17 @@
               <input type="text" name="whatsapp" id="whatsapp" placeholder="Masukan Whatsapp (628xxxxx)" required>
             </div>
             <div class="flex-button">
-              <a href="#"><button id="cekHargaBtn" class="button3"><img src="{{asset('images/cek.svg')}}"
-                    class="img-button">Cek
-                  Harga</button></a>
+              @if (Auth::check())
+              <a href="{{ route('cekongkir') }}">
+                <button id="cekHargaBtn" class="button3">
+                  <img src="{{ asset('images/cek.svg') }}" class="img-button">Cek Harga
+                </button>
+              </a>
+              @else
+              <a href="/login" class="button4">
+                <img src="{{ asset('images/cek.svg') }}" class="img-button">Cek Harga
+              </a>
+              @endif
             </div>
           </div>
         </form>
@@ -444,8 +450,6 @@
     </div>
   </div>
 
-
-
   <section id="us">
     <div class="row-us">
       <div class="container">
@@ -462,20 +466,18 @@
       </div>
     </div>
   </section>
-
-
   @include('layout.footer')
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
 
-      $('#origin_provinsi').on('change', function () {
+      $('#origin_provinsi').on('change', function() {
         var idProvinsi = $(this).val();
         if (idProvinsi) {
           $.ajax({
@@ -484,18 +486,18 @@
             data: {
               id_provinsi: idProvinsi
             },
-            success: function (response) {
+            success: function(response) {
               $('#origin_kabupaten').empty();
               $('#origin_kecamatan').empty();
 
               $('#origin_kabupaten').append('<option>== Pilih Salah Satu ==</option>');
               $('#origin_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function (key, value) {
+              $.each(response, function(key, value) {
                 $('#origin_kabupaten').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function (data) {
+            error: function(data) {
               console.log('error:', data);
             }
           });
@@ -508,7 +510,7 @@
         }
       });
 
-      $('#origin_kabupaten').on('change', function () {
+      $('#origin_kabupaten').on('change', function() {
         var idKabupaten = $(this).val();
         if (idKabupaten) {
           $.ajax({
@@ -517,16 +519,16 @@
             data: {
               id_kabupaten: idKabupaten
             },
-            success: function (response) {
+            success: function(response) {
               $('#origin_kecamatan').empty();
 
               $('#origin_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function (key, value) {
+              $.each(response, function(key, value) {
                 $('#origin_kecamatan').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function (data) {
+            error: function(data) {
               console.log('error:', data);
             }
           });
@@ -537,7 +539,7 @@
         }
       });
 
-      $('#destinasi_provinsi').on('change', function () {
+      $('#destinasi_provinsi').on('change', function() {
         var idProvinsi = $(this).val();
         if (idProvinsi) {
           $.ajax({
@@ -546,18 +548,18 @@
             data: {
               id_provinsi: idProvinsi
             },
-            success: function (response) {
+            success: function(response) {
               $('#destinasi_kabupaten').empty();
               $('#destinasi_kecamatan').empty();
 
               $('#destinasi_kabupaten').append('<option>== Pilih Salah Satu ==</option>');
               $('#destinasi_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function (key, value) {
+              $.each(response, function(key, value) {
                 $('#destinasi_kabupaten').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function (data) {
+            error: function(data) {
               console.log('error:', data);
             }
           });
@@ -570,7 +572,7 @@
         }
       });
 
-      $('#destinasi_kabupaten').on('change', function () {
+      $('#destinasi_kabupaten').on('change', function() {
         var idKabupaten = $(this).val();
         if (idKabupaten) {
           $.ajax({
@@ -579,16 +581,16 @@
             data: {
               id_kabupaten: idKabupaten
             },
-            success: function (response) {
+            success: function(response) {
               $('#destinasi_kecamatan').empty();
 
               $('#destinasi_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function (key, value) {
+              $.each(response, function(key, value) {
                 $('#destinasi_kecamatan').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function (data) {
+            error: function(data) {
               console.log('error:', data);
             }
           });
@@ -601,7 +603,7 @@
 
       var dataId;
 
-      $('#cekHargaBtn').on('click', function (e) {
+      $('#cekHargaBtn').on('click', function(e) {
         e.preventDefault();
 
         // Mengambil data dari form
@@ -614,6 +616,11 @@
         var destinasiKabupaten = $('#destinasi_kabupaten option:selected').text();
         var destinasiKecamatan = $('#destinasi_kecamatan option:selected').text();
         var whatsapp = $('#whatsapp').val();
+
+        // Mengambil user_id dari elemen input
+        var user_id = $('#dataId').val();
+
+        console.log(originProvinsi, originKabupaten, originKecamatan, armada, whatsapp, tkbm, destinasiProvinsi, destinasiKabupaten, destinasiKecamatan, user_id);
 
         // Mengirim data ke server
         $.ajax({
@@ -629,9 +636,9 @@
             destinasi_kabupaten: destinasiKabupaten,
             destinasi_kecamatan: destinasiKecamatan,
             whatsapp: whatsapp,
+            user_id: user_id, // Mengirim user_id bersamaan dengan data lainnya
           },
-          success: function (response) {
-            // Mengisi data ke elemen-elemen "container-result"
+          success: function(response) {
             $('#result-container').show();
             $('#origin_provinsi_result').text(originProvinsi);
             $('#origin_kabupaten_result').text(originKabupaten);
@@ -642,38 +649,29 @@
             $('#armada_result').text(armada);
             $('#tkbm_result').text(tkbm);
 
-            // Simpan ID yang diterima ke dalam variabel dataId
             dataId = response.id;
-            // Cek jika harga ditemukan atau tidak
             if (response.harga !== undefined) {
-              // Convert the price to a formatted string with dot as a thousand separator
               var formattedPrice = response.harga.toLocaleString('id-ID');
 
-              // Update the price in the result container
               $('#harga_result').text(formattedPrice);
             } else {
-              // If the price is not available, display "Hubungi Lebih Lanjut"
               $('#harga_result').text('Hubungi Lebih Lanjut');
             }
           },
-          error: function (error) {
+          error: function(error) {
             console.log('Error:', error);
           }
         });
       });
 
-      $('#orderBtn').on('click', function (e) {
+      $('#orderBtn').on('click', function(e) {
         e.preventDefault();
 
-        // Periksa apakah dataId memiliki nilai yang valid
         if (dataId) {
-          // Check if the price is available
           var hargaResult = $('#harga_result').text();
           if (hargaResult !== 'Hubungi Lebih Lanjut') {
-            // Redirect to the order page only when the price is available
             window.location.href = '/ordersteppindahanlong/' + dataId;
           } else {
-            // Price is not available, disable the button or show an error message
             alert('Harga tidak tersedia. Tidak dapat melakukan pemesanan.');
           }
         } else {
@@ -687,23 +685,19 @@
     });
   </script>
   <script>
-    // Get all elements with class="closebtn"
     var close = document.getElementsByClassName("closebtn");
     var i;
 
-    // Loop through all close buttons
     for (i = 0; i < close.length; i++) {
-      // When someone clicks on a close button
-      close[i].onclick = function () {
+      close[i].onclick = function() {
 
-        // Get the parent of <span class="closebtn"> (<div class="alert">)
         var div = this.parentElement;
 
-        // Set the opacity of div to 0 (transparent)
         div.style.opacity = "0";
 
-        // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
-        setTimeout(function () { div.style.display = "none"; }, 600);
+        setTimeout(function() {
+          div.style.display = "none";
+        }, 600);
       }
     }
   </script>

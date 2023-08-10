@@ -21,10 +21,13 @@ return new class extends Migration
             $table->string('destinasi_provinsi')->nullable();
             $table->string('destinasi_kabupaten')->nullable();
             $table->string('destinasi_kecamatan')->nullable();
-            $table->enum('armada',['PickUp','CDD','CDE','Fuso','Long','Box'])->nullable();
-            $table->enum('tkbm',['1 Orang','2 Orang','3 Orang','4 Orang','5 Orang','6 Orang'])->nullable();
+            $table->enum('armada', ['pickup', 'L300', 'CDE Bak', 'CDE Box', 'CDD Bak', 'CDD Box', 'CDD Long Box', 'Fuso Bak', 'Fuso Box', 'tronton bak/3away', 'tronton wing box/build up'])->nullable();
+            $table->enum('tkbm', ['1 Orang', '2 Orang', '3 Orang', '4 Orang', '5 Orang', '6 Orang'])->nullable();
+            $table->string('paket');
             $table->unsignedBigInteger('harga')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nama')->nullable();
             $table->string('email')->nullable();
             $table->string('home_provinsi')->nullable();
@@ -46,7 +49,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('order_pindahan_long');
-        
     }
-    
 };
