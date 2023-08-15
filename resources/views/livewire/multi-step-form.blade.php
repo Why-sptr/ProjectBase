@@ -10,30 +10,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -57,17 +49,21 @@
                         <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan No Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="whatsapp">
                         <span class="text-danger">@error('whatsapp'){{ $message }}@enderror</span>
                     </div>
+                    <div class="mb-3">
+                        <input type="hidden" value="menunggu" wire:model="status">
+                        <!-- Input hidden dengan nilai dari variabel $status -->
+                    </div>
                     <!--<input type="hidden" id="dataId" value="fd" wire:model="home_provinsi">-->
                     <!--<input type="hidden" id="dataId" value="dsf" wire:model="home_kabupaten">-->
                     <!--<input type="hidden" id="dataId" value="fsd" wire:model="home_kecamatan">-->
                     <!--<input type="hidden" id="dataId" value="hg" wire:model="detail_alamat_home">-->
                 </div>
                 <div class="col-md-4 imagestepper d-none d-lg-block">
-                    <img src="{{asset ('images/register2.svg')}}" style="width: 500px; display: block; margin-top: 10px;">
+                    <img src="{{asset ('images/stepper2.svg')}}" style="height: 400px; display: block; margin-top: -50px;">
                 </div>
             </div>
             @endif
-            
+
             @if($currentStep == 2)
 
             <!-- Step 2 -->
@@ -76,30 +72,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -111,35 +99,27 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="" class="form-label">Provinsi Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;"
-                            placeholder="Masukan Provinsi Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_provinsi">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Provinsi Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_provinsi">
                         <span class="text-danger">@error('home_provinsi'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Kabupaten Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;"
-                            placeholder="Masukan Kabupaten Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_kabupaten">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kabupaten Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kabupaten">
                         <span class="text-danger">@error('home_kabupaten'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Kecamatan Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;"
-                            placeholder="Masukan Kecamatan Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_kecamatan">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kecamatan Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kecamatan">
                         <span class="text-danger">@error('home_kecamatan'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control" placeholder="Masukan detail alamat lengkap anda"
-                            placeholder="Masukan Detail Alamat Rumah Anda" id=""
-                            style="height: 150px; border-radius: 20px;" wire:model="detail_alamat_home"></textarea>
+                        <textarea class="form-control" placeholder="Masukan detail alamat lengkap anda" placeholder="Masukan Detail Alamat Rumah Anda" id="" style="height: 150px; border-radius: 20px;" wire:model="detail_alamat_home"></textarea>
                         <span class="text-danger">@error('detail_alamat_home'){{ $message }}@enderror</span>
                     </div>
                 </div>
                 <div class="col-md-4 imagestepper d-none d-lg-block">
-                    <img src="{{asset ('images/step1.svg')}}" style="height: 500px; display: block; margin-top: -60px;">
+                    <img src="{{asset ('images/stepper1.svg')}}" style="height: 400px; display: block; margin-top: 50px;">
                 </div>
             </div>
             @endif
@@ -152,30 +132,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -290,30 +262,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false"
-                                aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -450,27 +414,21 @@
             @endif
 
 
-             <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end">
                 @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
                 <div></div>
                 @endif
 
                 @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4)
-                <button type="button" class="btn btn-md btn-secondary"
-                    style="margin-right: 10px; height: 60px; border-radius: 20px;"
-                    wire:click="decreaseStep()">Sebelumnya</button>
+                <button type="button" class="btn btn-md btn-secondary" style="margin-right: 10px; height: 60px; border-radius: 20px;" wire:click="decreaseStep()">Sebelumnya</button>
                 @endif
 
                 @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
-                <button type="button" class="btn btn-md btn-success"
-                    style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;"
-                    wire:click="increaseStep()">Selanjutnya</button>
+                <button type="button" class="btn btn-md btn-success" style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;" wire:click="increaseStep()">Selanjutnya</button>
                 @endif
 
                 @if ($currentStep == 4)
-                <button type="submit"
-                    style="margin-right: 100px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;"
-                    class="btn btn-md btn-info">
+                <button type="submit" style="margin-right: 100px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;" class="btn btn-md btn-info">
                     Kirim
                 </button>
                 @endif
@@ -492,11 +450,11 @@
             <img src="{{asset('images/logopilar.svg')}}" alt="">
 
             <div class="icons">
-                <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                <a href="#"><i class='bx bxl-twitter'></i></a>
-                <a href="#"><i class='bx bxl-instagram-alt'></i></a>
-                <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-                <a href="#"><i class='bx bxl-youtube'></i></i></a>
+                <a href="https://www.facebook.com/pilarutamatrans"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="https://twitter.com/pilarutamatrans"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com/pilarutamatrans/"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="https://www.linkedin.com/company/pt-pilar-utama-transindo/mycompany/"><i class='bx bxl-linkedin-square'></i></a>
+                <a href="https://www.youtube.com/channel/UCEmc_g-cYJ9am-wF_lFGihA"><i class='bx bxl-youtube'></i></i></a>
             </div>
         </div>
 
@@ -505,27 +463,27 @@
             <li>
                 <h5>Semarang</h5>
             </li>
-            <li><a href="#">Jalan lingkar tanjung mas
+            <li><a href="https://www.google.com/maps/search/Jalan+lingkar+tanjung+mas+no+A+34,+Panggung+Lor,+Kec.+Semarang+Utara,+Kota+Semarang,+Jawa+Tengah+50177/@-6.9539753,110.4036692,17z/data=!3m1!4b1?entry=ttu">Jalan lingkar tanjung mas
                     no A 34, Panggung Lor, Kec. Semarang Utara, Kota Semarang, Jawa Tengah 50177</a>
             </li>
             <li>
                 <h5>DKI Jakarta</h5>
             </li>
-            <li><a href="#">Jalan Rawa Gabus No. 108,
+            <li><a href="https://www.google.com/maps/place/Jl.+Kapuk+Rw.+Gabus+No.108,+RT.9%2FRW.11,+Kapuk,+Kecamatan+Cengkareng,+Kota+Jakarta+Barat,+Daerah+Khusus+Ibukota+Jakarta+11720/@-6.1322474,106.7411416,19z/data=!4m6!3m5!1s0x2e6a1d5c7468dd41:0xbb95d5d64960f208!8m2!3d-6.1316767!4d106.7414454!16s%2Fg%2F11c28f43cn?entry=ttu">Jalan Rawa Gabus No. 108,
                     Kec Cengkareng, Kota
                     Jakarta Barat - DKI Jakarta</a></li>
             <li>
                 <h5>Jawa</h5>
             </li>
-            <li><a href="#">Jalan Raya Merak No. 20, Wedoro, Kec Waru,
+            <li><a href="https://www.google.com/maps/place/Jl.+Raya+Merak+No.20,+Wedoro,+Kec.+Waru,+Kabupaten+Sidoarjo,+Jawa+Timur+61256/@-7.3469127,112.7496633,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd7fb2d4b224ebb:0x8ed9e0c9b6c466ce!8m2!3d-7.346918!4d112.7522382!16s%2Fg%2F11csjmbz71?entry=ttu">Jalan Raya Merak No. 20, Wedoro, Kec Waru,
                     Sidoarjo - Jawa Timur</a></li>
         </div>
 
         <div class="footer-content">
             <h4>Kontak</h4>
-            <li><a href="#">Telepon : 0811-2889-600 </a></li>
-            <li><a href="#">Whatsapp : 0811-2889-600 </a></li>
-            <li><a href="#">Email : telemarketingpilar@gmail.com</a></li>
+            <li><a href="tel:0811-2889-600">Telepon : 0811-2889-600 </a></li>
+            <li><a href="https://wa.me/628112889600?text=Saya%20ingin%20konsultasi%20tentang%20pesanan%20kepada%20Customer Service">Whatsapp : 0811-2889-600 </a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=telemarketingpilar@gmail.com">Email : telemarketingpilar@gmail.com</a></li>
         </div>
     </section>
     <hr style="color: #555555;">

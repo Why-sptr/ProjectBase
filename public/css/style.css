@@ -22,9 +22,7 @@ body {
 .form_login {
     background-color: #ffffff;
     width: 80%;
-    /* Change to a percentage */
     max-width: 500px;
-    /* Add a max-width for larger screens */
     margin: 50px auto 10px auto;
     padding: 30px;
     border-radius: 8px;
@@ -37,9 +35,7 @@ body {
     border-radius: 100px;
     padding: 10px 15px;
     width: 80%;
-    /* Change to a percentage */
     max-width: 300px;
-    /* Add a max-width for larger screens */
     border: 1px solid #D9D9D9;
     outline: none;
     display: block;
@@ -51,9 +47,7 @@ body {
     border: none;
     background: #719BE6;
     width: 80%;
-    /* Change to a percentage */
     max-width: 300px;
-    /* Add a max-width for larger screens */
     padding: 10px;
     color: #FFFFFF;
     margin-top: 25px;
@@ -75,19 +69,6 @@ body {
     text-decoration: underline;
 }
 
-/* Media Query for Mobile Devices */
-@media (max-width: 768px) {
-
-    .form_login,
-    .input_login,
-    .button_login {
-        width: 70%;
-        /* Adjust the width for smaller screens */
-        max-width: none;
-        /* Remove max-width for smaller screens */
-    }
-}
-
 /* Navbar */
 .profile {
     border-radius: 50%;
@@ -105,7 +86,13 @@ header a {
 }
 
 header a:hover {
-    color: blue;
+    color: #A3BCFF;
+    font-weight: 700;
+}
+
+header a:active {
+    color: #A3BCFF;
+    font-weight: 700;
 }
 
 header {
@@ -121,6 +108,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 3;
 }
 
 .navbar .links {
@@ -136,7 +124,8 @@ header {
 }
 
 .navbar .action_btn {
-    background-color: blue;
+    background-color:
+        3;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
@@ -678,14 +667,12 @@ a {
 .alert {
     padding: 20px;
     background-color: #00F0FF;
-    /* Hijau */
     color: black;
     font-weight: 500;
     border-radius: 10px;
     margin-bottom: 15px;
 }
 
-/* The close button */
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -697,11 +684,171 @@ a {
     transition: 0.3s;
 }
 
-/* When moving the mouse over the close button */
 .closebtn:hover {
     color: black;
 }
 
+/* Navbar Riwayat */
+.title-pesanan {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.navigation-riwayat {
+    width: 100%;
+    height: 60px;
+    max-width: 1800px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-riwayat ul {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.navigation-riwayat a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.navigation-riwayat li {
+    background-color: #0B1C24;
+    border-radius: 10px;
+    height: 60px;
+    width: 200px;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-riwayat li.active-2 {
+    background-color: #00F0FF;
+}
+
+.navigation-riwayat li.active-2 a {
+    color: black;
+    font-weight: 00;
+    font-size: 16px;
+}
+
+.item-keranjang {
+    margin-top: 50px;
+    max-width: 1400px;
+    border-radius: 10px;
+    background-color: #0B1C24;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Keranjang */
+.card-keranjang {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+
+.img-keranjang {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.text-keranjang {
+    flex: 1;
+    padding: 10px;
+}
+
+.title-keranjang {
+    margin: 0;
+    font-size: 20px;
+}
+
+.p-keranjang {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 7px 0;
+}
+
+.button-keranjang {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.button-keranjang button {
+    background-color: #0D6EA7;
+    color: white;
+    height: 60px;
+    width: 120px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.button-keranjang .button2 {
+    background-color: #f9ffc4fd;
+    color: #ac8400;
+    height: 60px;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    height: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Mobile responsiveness */
 @media (max-width: 834px) {
     .container {
         flex-direction: column;
@@ -713,39 +860,7 @@ a {
     }
 }
 
-/* Mobile responsiveness */
-
-/* Adjust header image position for mobile */
-@media (max-width: 834px) {
-    .image {
-        display: none;
-    }
-}
-
-/* Make the container in the header stack for mobile */
-@media (max-width: 834px) {
-    .container-header {
-        flex-direction: column;
-    }
-
-    .text-header {
-        width: 100%;
-    }
-}
-
-@media (max-width: 834px) {
-    .row-all {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .container-form,
-    .container-result {
-        margin: 10px;
-    }
-}
-
-/* Mobile responsiveness */
+/* Tab responsiveness */
 @media (max-width: 834px) {
     .image {
         display: none;
@@ -774,7 +889,7 @@ a {
     }
 }
 
-/* Adjust Form Cek Harga for mobile */
+/* Tab Form Cek Harga */
 @media (max-width: 834px) {
 
     .container-form form .input-box {
@@ -813,7 +928,7 @@ a {
     }
 }
 
-
+/* Mobile */
 @media (max-width: 576px) {
     .text-header h1 {
         margin-top: 10px;
@@ -942,6 +1057,7 @@ a {
 
     .dropdown_menu {
         display: block;
+        z-index: 3;
     }
 }
 
@@ -952,33 +1068,43 @@ a {
     }
 }
 
-/* Responsive Styles for Dropdown Menu */
+/* Responsive Login */
+@media (max-width: 768px) {
+
+    .form_login,
+    .input_login,
+    .button_login {
+        width: 70%;
+        max-width: none;
+    }
+}
+
+/* Responsive Dropdown Menu */
 @media screen and (max-width: 768px) {
     .profile-dropdown.active .dropdown-content {
-      display: block;
+        display: block;
     }
-  
-    .profile-trigger {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-  
-    .caret {
-      width: 0;
-      height: 0;
-      border-top: 5px solid black;
-      border-right: 5px solid transparent;
-      border-left: 5px solid transparent;
-    }
-  }
 
-  @media screen and (max-width: 768px) {
+    .profile-trigger {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .caret {
+        width: 0;
+        height: 0;
+        border-top: 5px solid black;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+    }
+}
+
+@media screen and (max-width: 768px) {
     .img_login {
         display: block;
         width: 200px;
         margin: 30px auto;
     }
-  }
-  
+}

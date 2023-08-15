@@ -1,17 +1,15 @@
 <header>
   <div class="navbar">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/cekongkir">
       <img src="{{asset('images/logopilar.svg')}}" alt="logopilar" width="250" height="50">
     </a>
     <ul class="links">
-      <li><a href="riwayat">Riwayat</a></li>
-      <li><a href="riwayat">Truk-Long</a></li>
-      <li><a href="riwayat">Truk-Short</a></li>
-      <li><a href="riwayat">Pindahan-Long</a></li>
-      <li><a href="riwayat">Pindahan-Short</a></li>
+      <li><a href="/riwayat">Riwayat</a></li>
+      <li><a href="/ordertruklong">Truk-Long</a></li>
+      <li><a href="/ordertrukshort">Truk-Short</a></li>
+      <li><a href="/orderpindahanlong">Pindahan-Long</a></li>
+      <li><a href="/orderpindahanshort">Pindahan-Short</a></li>
     </ul>
-    <!-- In your HTML file -->
-    <!-- In your HTML file -->
     <div class="profile-dropdown">
       <div class="profile-trigger" onclick="toggleDropdown()">
         <img class="profile" src="{{ Auth::check() ? Auth::user()->profile_picture : asset('images/profile.svg') }}" alt="Avatar">
@@ -38,11 +36,11 @@
   </div>
 
   <div class="dropdown_menu">
-    <li><a href="riwayat">Riwayat</a></li>
+    <li><a href="/riwayat">Riwayat</a></li>
     <li><a href="riwayat">Truk-Long</a></li>
     <li><a href="riwayat">Truk-Short</a></li>
-    <li><a href="riwayat">Pindahan-Long</a></li>
-    <li><a href="riwayat">Pindahan-Short</a></li>
+    <li><a href="/orderpindahanlong">Pindahan-Long</a></li>
+    <li><a href="/orderpindahanshort">Pindahan-Short</a></li>
   </div>
 
 </header>

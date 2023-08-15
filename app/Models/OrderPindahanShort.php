@@ -24,6 +24,9 @@ class OrderPindahanShort extends Model
         'paket',
         'harga',
         'whatsapp',
+        'user_id',
+        'status',
+        'gambar',
         'nama',
         'email',
         'home_provinsi',
@@ -35,4 +38,9 @@ class OrderPindahanShort extends Model
         'detail_alamat_destinasi',
         'rencana_kirim',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

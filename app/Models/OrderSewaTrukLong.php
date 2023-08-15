@@ -21,6 +21,8 @@ class OrderSewaTrukLong extends Model
         'harga',
         'whatsapp',
         'user_id',
+        'status',
+        'gambar',
         'nama',
         'email',
         'jenis_kelamin',
@@ -33,9 +35,16 @@ class OrderSewaTrukLong extends Model
         'rencana_kirim',
     ];
 
+    protected $appends = ['link'];
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function getLinkAttribute()
+    {
+        return url('/bukti') . '/' . $this->gambar;
     }
 
 }

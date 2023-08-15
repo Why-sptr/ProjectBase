@@ -44,13 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function orders()
+    public function orderSewaTrukLongs()
     {
         return $this->hasMany(OrderSewaTrukLong::class);
     }
 
-    public function orders2()
+    public function orderSewaTrukShorts()
     {
         return $this->hasMany(OrderSewaTrukShort::class);
+    }
+
+
+    public function orderPindahanLongs()
+    {
+        return $this->hasMany(OrderPindahanLong::class);
+    }
+
+    public function orderPindahanShorts()
+    {
+        return $this->hasMany(OrderPindahanShort::class);
     }
 }
