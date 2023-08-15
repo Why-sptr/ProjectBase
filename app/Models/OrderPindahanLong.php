@@ -22,6 +22,8 @@ class OrderPindahanLong extends Model
         'harga',
         'whatsapp',
         'user_id',
+        'status',
+        'gambar',
         'nama',
         'email',
         'paket',
@@ -33,4 +35,9 @@ class OrderPindahanLong extends Model
         'detail_alamat_destinasi',
         'rencana_kirim',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

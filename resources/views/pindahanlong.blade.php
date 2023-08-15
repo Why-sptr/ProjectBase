@@ -424,21 +424,102 @@
               </div>
             </div>
             <div class="card-content">
-              <h2 class="name">PickUp</h2>
+              <h2 class="name">Pick Up</h2>
               <p class="description">
-                Kapasitas : 10 Ton
+                Kapasitas : 1 Ton
               </p>
               <p class="description">
-                Volume : 33 CBM
+                Volume : 4 CBM
               </p>
               <p class="description">
-                Lebar : 2,3 M
+                Lebar : 1,6 M
               </p>
               <p class="description">
-                Panjang : 6 M
+                Panjang : 2,2 M
               </p>
               <p class="description">
-                Tinggi : 2,2 M
+                Tinggi : 1,3 M
+              </p>
+            </div>
+          </div>
+           <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/l300.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">L300</h2>
+              <p class="description">
+                Kapasitas : 1 Ton
+              </p>
+              <p class="description">
+                Volume : 4 CBM
+              </p>
+              <p class="description">
+                Lebar : 1,6 M
+              </p>
+              <p class="description">
+                Panjang : 2,2 M
+              </p>
+              <p class="description">
+                Tinggi : 1,3 M
+              </p>
+            </div>
+          </div>
+           <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/cdebak.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">CDE Bak</h2>
+              <p class="description">
+                Kapasitas : 4,5 Ton
+              </p>
+              <p class="description">
+                Volume : 9 CBM
+              </p>
+              <p class="description">
+                Lebar : 1,6 M
+              </p>
+              <p class="description">
+                Panjang : 3 M
+              </p>
+              <p class="description">
+                Tinggi : 1,6 M
+              </p>
+            </div>
+          </div>
+          <div class="card-armada swiper-slide">
+            <div class="image-content">
+              <span class="overlay"></span>
+
+              <div class="card-armada-image">
+                <img src="{{asset('images/trontonwing.svg')}}" alt="" class="card-armada-img">
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">Tronton WingBox</h2>
+              <p class="description">
+                Kapasitas : 15 Ton
+              </p>
+              <p class="description">
+                Volume : 45 CBM
+              </p>
+              <p class="description">
+                Lebar : 2,4 M
+              </p>
+              <p class="description">
+                Panjang : 9 M
+              </p>
+              <p class="description">
+                Tinggi : 2,4 M
               </p>
             </div>
           </div>

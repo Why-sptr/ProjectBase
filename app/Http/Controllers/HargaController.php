@@ -16,7 +16,7 @@ class HargaController extends Controller
         if (Auth::check()) {
             // Retrieve the user ID
             $userId = Auth::id();
-    
+
             // Ambil data dari permintaan
             $originProvinsi = $request->input('origin_provinsi');
             $originKabupaten = $request->input('origin_kabupaten');
@@ -26,7 +26,7 @@ class HargaController extends Controller
             $destinasiKabupaten = $request->input('destinasi_kabupaten');
             $destinasiKecamatan = $request->input('destinasi_kecamatan');
             $whatsapp = $request->input('whatsapp');
-    
+
             // Query untuk mendapatkan harga berdasarkan data yang diberikan
             $harga = DB::table('longtrip_truk')
                 ->where('origin_provinsi', $originProvinsi)
@@ -35,7 +35,7 @@ class HargaController extends Controller
                 ->where('destinasi_provinsi', $destinasiProvinsi)
                 ->where('destinasi_kabupaten', $destinasiKabupaten)
                 ->value('harga');
-    
+
             // Simpan data ke database baru
             $newHarga = new OrderSewaTrukLong;
             $newHarga->user_id = $userId; // Associate user ID
@@ -46,20 +46,20 @@ class HargaController extends Controller
             $newHarga->destinasi_provinsi = $destinasiProvinsi;
             $newHarga->destinasi_kabupaten = $destinasiKabupaten;
             $newHarga->destinasi_kecamatan = $destinasiKecamatan;
-            
+
             if ($harga !== null) {
                 $newHarga->harga = $harga;
             } else {
                 $newHarga->harga = 0;
                 $newHarga->whatsapp = $whatsapp;
                 $newHarga->save();
-    
+
                 return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
             }
-            
+
             $newHarga->whatsapp = $whatsapp;
             $newHarga->save();
-    
+
             return response()->json(['harga' => $newHarga->harga, 'id' => $newHarga->id]);
         } else {
             // User is not logged in, handle accordingly
@@ -73,7 +73,7 @@ class HargaController extends Controller
         return view('orderstep', ['harga' => $harga]);
     }
 
-    
+
 
     public function updateorder(Request $request, $id)
     {
@@ -91,7 +91,7 @@ class HargaController extends Controller
             'destinasi_provinsi' => 'nullable|string',
             'destinasi_kabupaten' => 'nullable|string',
             'destinasi_kecamatan' => 'nullable|string',
-            'armada' => 'nullable|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+            'armada' => 'nullable|string|in:pickup,L300,CDE Bak,CDE Box,CDD Bak,CDD Box,CDD Long Box,Fuso Bak,Fuso Box,tronton bak/3away,tronton wing box/build up',
             'harga' => 'nullable|integer',
             'whatsapp' => 'nullable|string',
             'nama' => 'nullable|string',
@@ -111,5 +111,15 @@ class HargaController extends Controller
         $order->save();
 
         return response()->json(['message' => 'Order updated successfully'], 200);
+    }
+
+    public function index2()
+    {
+        $newHarga = OrderSewaTrukLong::all();
+
+        return response()->json([
+            'status' => "success",
+            "data" => $newHarga,
+        ]);
     }
 }

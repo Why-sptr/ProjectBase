@@ -1,3 +1,4 @@
+// Swipper Card
 var swiper = new Swiper(".slide-content", {
     slidesPerView: 5,
     spaceBetween: 25,
@@ -29,7 +30,7 @@ var swiper = new Swiper(".slide-content", {
 
 });
 
-
+// Dropdown Keranjang
 const toggleBtn = document.querySelector('.toogle_btn');
 const toggleBtnIcon = document.querySelector('.toogle_btn i');
 const dropDownMenu = document.querySelector('.dropdown_menu');

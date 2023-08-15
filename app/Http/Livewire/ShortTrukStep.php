@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\OrderSewaTrukShort;
 
@@ -31,6 +32,7 @@ class ShortTrukStep extends Component
     public $detail_alamat_origin;
     public $detail_alamat_destinasi;
     public $rencana_kirim;
+    public $status;
     public $harga_id;
 
 
@@ -43,7 +45,10 @@ class ShortTrukStep extends Component
         $this->harga = $harga;
         $this->harga_id = $harga_id;
         $this->nama = $harga->nama;
-        $this->email = $harga->email;
+        $user = Auth::user();
+        if ($user) {
+            $this->email = $user->email;
+        }
         $this->whatsapp = $harga->whatsapp;
         $this->home_provinsi = $harga->home_provinsi;
         $this->home_kabupaten = $harga->home_kabupaten;
@@ -61,6 +66,7 @@ class ShortTrukStep extends Component
         $this->destinasi_kecamatan = $harga->destinasi_kecamatan;
         $this->destinasi_kelurahan = $harga->destinasi_kelurahan;
         $this->armada = $harga->armada;
+        $this->status = $harga->status;
         $this->rencana_kirim = $harga->rencana_kirim;
     }
     public function render()
@@ -95,6 +101,7 @@ class ShortTrukStep extends Component
                 'whatsapp' => 'required|string',
                 'nama' => 'required|string',
                 'email' => 'required|email',
+                'status' => 'required',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
@@ -116,7 +123,7 @@ class ShortTrukStep extends Component
                 'destinasi_kelurahan' => 'required|string',
                 'detail_alamat_origin' => 'required|string',
                 'detail_alamat_destinasi' => 'required|string',
-                'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+                'armada' => 'required|string|in:pickup,L300,CDE Bak,CDE Box,CDD Bak,CDD Box,CDD Long Box,Fuso Bak,Fuso Box,tronton bak/3away,tronton wing box/build up',
                 'rencana_kirim' => 'required|date',
             ]);
         } elseif ($this->currentStep == 4) {
@@ -131,7 +138,7 @@ class ShortTrukStep extends Component
                 'destinasi_kelurahan' => 'required|string',
                 'detail_alamat_origin' => 'required|string',
                 'detail_alamat_destinasi' => 'required|string',
-                'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+                'armada' => 'required|string|in:pickup,L300,CDE Bak,CDE Box,CDD Bak,CDD Box,CDD Long Box,Fuso Bak,Fuso Box,tronton bak/3away,tronton wing box/build up',
                 'rencana_kirim' => 'required|date',
             ]);
         }
@@ -159,6 +166,7 @@ class ShortTrukStep extends Component
             'destinasi_kecamatan' => $this->destinasi_kecamatan,
             'destinasi_kelurahan' => $this->destinasi_kelurahan,
             'armada' => $this->armada,
+            'status' => 'menunggu',
             'rencana_kirim' => $this->rencana_kirim,
         ]);
 
@@ -181,6 +189,7 @@ class ShortTrukStep extends Component
         $this->destinasi_kecamatan = NULL;
         $this->destinasi_kelurahan = NULL;
         $this->armada = NULL;
+        $this->status = NULL;
         $this->rencana_kirim = NULL;
 
         redirect()->route('cekongkirdalamkota')->with('success', 'Terima Kasih Atas Pesanan Anda, CS Kami Akan Segera Menghubungi Anda');

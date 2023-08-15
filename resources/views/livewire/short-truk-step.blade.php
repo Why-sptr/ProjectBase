@@ -10,30 +10,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -44,25 +36,26 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Customer</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Nama Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="nama">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Nama Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="nama">
                         <span class="text-danger">@error('nama'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email Customer</label>
-                        <input type="email" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Email Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="email">
+                        <input type="email" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Email Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="email">
                         <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="whatsapp" class="form-label">No Whatsapp</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan No Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="whatsapp">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan No Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="whatsapp">
                         <span class="text-danger">@error('whatsapp'){{ $message }}@enderror</span>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" value="menunggu" wire:model="status">
+                        <!-- Input hidden dengan nilai dari variabel $status -->
                     </div>
                 </div>
                 <div class="col-md-4 imagestepper d-none d-lg-block">
-                    <img src="{{asset ('images/step1.svg')}}" style="height: 500px; display: block; margin-top: -60px;">
+                    <img src="{{asset ('images/stepper2.svg')}}" style="height: 400px; display: block; margin-top: -50px;">
                 </div>
             </div>
             @endif
@@ -75,30 +68,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3"
-                                aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -110,37 +95,32 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="" class="form-label">Provinsi Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Provinsi Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_provinsi">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Provinsi Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_provinsi">
                         <span class="text-danger">@error('home_provinsi'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Kabupaten Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kabupaten Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_kabupaten">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kabupaten Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kabupaten">
                         <span class="text-danger">@error('home_kabupaten'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Kecamatan Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kecamatan Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_kecamatan">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kecamatan Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kecamatan">
                         <span class="text-danger">@error('home_kecamatan'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Kelurahan Rumah</label>
-                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kelurahan Rumah Anda" class="form-control" id=""
-                            aria-describedby="emailHelp" wire:model="home_kelurahan">
+                        <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kelurahan Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kelurahan">
                         <span class="text-danger">@error('home_kelurahan'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control" placeholder="Masukan Detail Alamat Rumah Anda" id=""
-                            style="height: 150px; border-radius: 20px;" wire:model="detail_alamat_home"></textarea>
+                        <textarea class="form-control" placeholder="Masukan Detail Alamat Rumah Anda" id="" style="height: 150px; border-radius: 20px;" wire:model="detail_alamat_home"></textarea>
                         <span class="text-danger">@error('detail_alamat_home'){{ $message }}@enderror</span>
                     </div>
                 </div>
                 <div class="col-md-4 imagestepper d-none d-lg-block">
-                    <img src="{{asset ('images/step1.svg')}}" style="height: 500px; display: block; margin-top: -60px;">
+                    <img src="{{asset ('images/stepper1.svg')}}" style="height: 400px; display: block; margin-top: 50px;">
                 </div>
             </div>
             @endif
@@ -153,30 +133,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-secondary w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-secondary text-white btn-sm rounded-pill"
-                                style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4"
-                                aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-secondary text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -185,16 +157,14 @@
             </div>
             <div class="row" style="margin-top: 100px;">
                 <div class="col">
-                <h3>ALAMAT ASAL (ORIGIN)</h3>
+                    <h3>ALAMAT ASAL (ORIGIN)</h3>
                     <table>
                         <tr>
                             <td>
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Provinsi Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_provinsi">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_provinsi">
                                         <span class="text-danger">@error('origin_provinsi'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -204,9 +174,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kabupaten Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kabupaten">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kabupaten">
                                         <span class="text-danger">@error('origin_kabupaten'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -216,9 +184,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kecamatan Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kecamatan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kecamatan">
                                         <span class="text-danger">@error('origin_kecamatan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -228,9 +194,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kelurahan Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kelurahan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kelurahan">
                                         <span class="text-danger">@error('origin_kelurahan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -241,24 +205,18 @@
 
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control" placeholder="Masukan Detail Alamat Kota Asal" id=""
-                            style="min-height: 150px; border-radius: 20px;"
-                            wire:model="detail_alamat_origin"></textarea>
+                        <textarea class="form-control" placeholder="Masukan Detail Alamat Kota Asal" id="" style="min-height: 150px; border-radius: 20px;" wire:model="detail_alamat_origin"></textarea>
                         <span class="text-danger">@error('detail_alamat_origin'){{ $message }}@enderror</span>
                     </div>
                     <div class="md-form md-outline input-with-post-icon datepicker" id="accLabels">
                         <label for="date">Rencana Kirim</label>
-                        <input placeholder="Select date" type="date" id="date"
-                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                            wire:model="rencana_kirim">
+                        <input placeholder="Select date" type="date" id="date" style="min-height: 60px; border-radius: 20px;" class="form-control" wire:model="rencana_kirim">
                         <i class="fas fa-calendar input-prefix" tabindex=0></i>
                         <span class="text-danger">@error('rencana_kirim'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="disabledTextInput" class="form-label">Jenis Kendaraan</label>
-                        <input style="min-height: 60px; border-radius: 20px;" class="form-control" type="text"
-                            placeholder="Disabled input" aria-label="Disabled input example" disabled
-                            wire:model="armada">
+                        <input style="min-height: 60px; border-radius: 20px;" class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled wire:model="armada">
                         <span class="text-danger">@error('armada'){{ $message }}@enderror</span>
                     </div>
                 </div>
@@ -270,9 +228,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Provinsi Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_provinsi">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_provinsi">
                                         <span class="text-danger">@error('destinasi_provinsi'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -282,9 +238,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kabupaten Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kabupaten">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kabupaten">
                                         <span class="text-danger">@error('destinasi_kabupaten'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -294,9 +248,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kecamatan Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kecamatan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kecamatan">
                                         <span class="text-danger">@error('destinasi_kecamatan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -306,9 +258,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kelurahan Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kelurahan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kelurahan">
                                         <span class="text-danger">@error('destinasi_kelurahan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -319,9 +269,7 @@
 
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control" placeholder="Masukan Detail Alamat Tujuan Kota Anda" id=""
-                            style="min-height: 150px; border-radius: 20px;"
-                            wire:model="detail_alamat_destinasi"></textarea>
+                        <textarea class="form-control" placeholder="Masukan Detail Alamat Tujuan Kota Anda" id="" style="min-height: 150px; border-radius: 20px;" wire:model="detail_alamat_destinasi"></textarea>
                         <span class="text-danger">@error('detail_alamat_destinasi'){{ $message }}@enderror</span>
                     </div>
                 </div>
@@ -336,30 +284,22 @@
                 <div class="col-md-12" style="margin-top: 50px;">
                     <div class="container-fluid p-2 align-items-center">
                         <div class="d-flex justify-content-around">
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true"
-                                aria-controls="company1" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company1" aria-expanded="true" aria-controls="company1" onclick="stepFunction(event)">
                                 1
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company2" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 2
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false"
-                                aria-controls="company3" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company3" aria-expanded="false" aria-controls="company3" onclick="stepFunction(event)">
                                 3
                             </button>
                             <span class="bg-info w-25 rounded mt-auto mb-auto me-1 ms-1" style="height: 0.2rem">
                             </span>
-                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem"
-                                data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false"
-                                aria-controls="company4" onclick="stepFunction(event)">
+                            <button class="btn bg-info text-white btn-sm rounded-pill" style="width: 2rem; height: 2rem" data-bs-toggle="collapse" data-bs-target="#company4" aria-expanded="false" aria-controls="company4" onclick="stepFunction(event)">
                                 4
                             </button>
                         </div>
@@ -373,20 +313,17 @@
                         <tr>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama Customer</label>
-                                <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Nama Anda" class="form-control"
-                                    id="" aria-describedby="emailHelp" wire:model="nama">
+                                <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Nama Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="nama">
                                 <span class="text-danger">@error('nama'){{ $message }}@enderror</span>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email Customer</label>
-                                <input type="email" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Email Anda" class="form-control"
-                                    id="" aria-describedby="emailHelp" wire:model="email">
+                                <input type="email" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Email Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="email">
                                 <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                             </div>
                             <div class="mb-3">
                                 <label for="whatsapp" class="form-label">No Whatsapp</label>
-                                <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan No Anda" class="form-control"
-                                    id="" aria-describedby="emailHelp" wire:model="whatsapp">
+                                <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan No Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="whatsapp">
                                 <span class="text-danger">@error('whatsapp'){{ $message }}@enderror</span>
                             </div>
                             <table>
@@ -394,43 +331,37 @@
                                     <td>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Provinsi Rumah</label>
-                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Provinsi Rumah Anda" class="form-control"
-                                                id="" aria-describedby="emailHelp" wire:model="home_provinsi">
+                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Provinsi Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_provinsi">
                                             <span class="text-danger">@error('home_provinsi'){{ $message }}@enderror</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Kabupaten Rumah</label>
-                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kabupaten Rumah Anda" class="form-control"
-                                                id="" aria-describedby="emailHelp" wire:model="home_kabupaten">
+                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kabupaten Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kabupaten">
                                             <span class="text-danger">@error('home_kabupaten'){{ $message }}@enderror</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Kecamatan Rumah</label>
-                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kecamatan Rumah Anda" class="form-control"
-                                                id="" aria-describedby="emailHelp" wire:model="home_kecamatan">
+                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kecamatan Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kecamatan">
                                             <span class="text-danger">@error('home_kecamatan'){{ $message }}@enderror</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Kelurahan Rumah</label>
-                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kelurahan Rumah Anda" class="form-control"
-                                                id="" aria-describedby="emailHelp" wire:model="home_kelurahan">
+                                            <input type="text" style="min-height: 60px; border-radius: 20px;" placeholder="Masukan Kelurahan Rumah Anda" class="form-control" id="" aria-describedby="emailHelp" wire:model="home_kelurahan">
                                             <span class="text-danger">@error('home_kelurahan'){{ $message }}@enderror</span>
                                         </div>
                                     </td>
                                 </tr>
                             </table>
-                            
+
                             <div class="mb-3">
                                 <label for="floatingTextarea2">Detail Alamat</label>
-                                <textarea class="form-control"  placeholder="Masukan Detail Alamat Kota Asal Anda" id=""
-                                    style="height: 150px; border-radius: 20px;"
-                                    wire:model="detail_alamat_home"></textarea>
+                                <textarea class="form-control" placeholder="Masukan Detail Alamat Kota Asal Anda" id="" style="height: 150px; border-radius: 20px;" wire:model="detail_alamat_home"></textarea>
                                 <span class="text-danger">@error('detail_alamat_home'){{ $message }}@enderror</span>
                             </div>
 
@@ -438,17 +369,13 @@
                     </table>
                     <div class="md-form md-outline input-with-post-icon datepicker" id="accLabels">
                         <label for="date">Rencana Kirim</label>
-                        <input placeholder="Select date" type="date" id="date"
-                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                            wire:model="rencana_kirim">
+                        <input placeholder="Select date" type="date" id="date" style="min-height: 60px; border-radius: 20px;" class="form-control" wire:model="rencana_kirim">
                         <i class="fas fa-calendar input-prefix" tabindex=0></i>
                         <span class="text-danger">@error('rencana_kirim'){{ $message }}@enderror</span>
                     </div>
                     <div class="mb-3">
                         <label for="disabledTextInput" class="form-label">Jenis Kendaraan</label>
-                        <input style="min-height: 60px; border-radius: 20px;" class="form-control" type="text"
-                            placeholder="Disabled input" aria-label="Disabled input example" disabled
-                            wire:model="armada">
+                        <input style="min-height: 60px; border-radius: 20px;" class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled wire:model="armada">
                         <span class="text-danger">@error('armada'){{ $message }}@enderror</span>
                     </div>
                 </div>
@@ -460,9 +387,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Provinsi Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_provinsi">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_provinsi">
                                         <span class="text-danger">@error('origin_provinsi'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -472,9 +397,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kabupaten Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kabupaten">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kabupaten">
                                         <span class="text-danger">@error('origin_kabupaten'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -484,9 +407,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kecamatan Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kecamatan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kecamatan">
                                         <span class="text-danger">@error('origin_kecamatan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -496,9 +417,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kelurahan Asal</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="origin_kelurahan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="origin_kelurahan">
                                         <span class="text-danger">@error('origin_kelurahan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -508,9 +427,7 @@
                     </table>
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control"  placeholder="Masukan Detail Alamat Kota Asal Anda" id=""
-                            style="min-height: 150px; border-radius: 20px;"
-                            wire:model="detail_alamat_origin"></textarea>
+                        <textarea class="form-control" placeholder="Masukan Detail Alamat Kota Asal Anda" id="" style="min-height: 150px; border-radius: 20px;" wire:model="detail_alamat_origin"></textarea>
                         <span class="text-danger">@error('detail_alamat_origin'){{ $message }}@enderror</span>
                     </div>
                     <table>
@@ -519,9 +436,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Provinsi Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_provinsi">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_provinsi">
                                         <span class="text-danger">@error('destinasi_provinsi'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -531,9 +446,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kabupaten Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kabupaten">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kabupaten">
                                         <span class="text-danger">@error('destinasi_kabupaten'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -543,9 +456,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kecamatan Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kecamatan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kecamatan">
                                         <span class="text-danger">@error('destinasi_kecamatan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -555,9 +466,7 @@
                                 <div class="mb-3">
                                     <fieldset disabled>
                                         <label for="disabledTextInput" class="form-label">Kelurahan Tujuan</label>
-                                        <input type="text" id="disabledTextInput"
-                                            style="min-height: 60px; border-radius: 20px;" class="form-control"
-                                            placeholder="Disabled input" wire:model="destinasi_kelurahan">
+                                        <input type="text" id="disabledTextInput" style="min-height: 60px; border-radius: 20px;" class="form-control" placeholder="Disabled input" wire:model="destinasi_kelurahan">
                                         <span class="text-danger">@error('destinasi_kelurahan'){{ $message
                                             }}@enderror</span>
                                     </fieldset>
@@ -568,9 +477,7 @@
 
                     <div class="mb-3">
                         <label for="floatingTextarea2">Detail Alamat</label>
-                        <textarea class="form-control" placeholder="Masukan Detail Alamat Tujuan Kota Anda" id=""
-                            style="min-height: 150px; border-radius: 20px;"
-                            wire:model="detail_alamat_destinasi"></textarea>
+                        <textarea class="form-control" placeholder="Masukan Detail Alamat Tujuan Kota Anda" id="" style="min-height: 150px; border-radius: 20px;" wire:model="detail_alamat_destinasi"></textarea>
                         <span class="text-danger">@error('detail_alamat_destinasi'){{ $message }}@enderror</span>
                     </div>
                     <div>
@@ -585,28 +492,22 @@
                 </div>
             </div>
             @endif
-            
+
             <div class="d-flex justify-content-end">
                 @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
                 <div></div>
                 @endif
 
                 @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4)
-                <button type="button" class="btn btn-md btn-secondary"
-                    style="margin-right: 10px; height: 60px; border-radius: 20px;"
-                    wire:click="decreaseStep()">Sebelumnya</button>
+                <button type="button" class="btn btn-md btn-secondary" style="margin-right: 10px; height: 60px; border-radius: 20px;" wire:click="decreaseStep()">Sebelumnya</button>
                 @endif
 
                 @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
-                <button type="button" class="btn btn-md btn-success"
-                    style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;"
-                    wire:click="increaseStep()">Selanjutnya</button>
+                <button type="button" class="btn btn-md btn-success" style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;" wire:click="increaseStep()">Selanjutnya</button>
                 @endif
 
                 @if ($currentStep == 4)
-                <button type="submit"
-                    style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;"
-                    class="btn btn-md btn-info">
+                <button type="submit" style="margin-right: 10px; height: 60px; border-radius: 20px; background-color: #00F0FF; color: black;" class="btn btn-md btn-info">
                     Kirim
                 </button>
                 @endif
@@ -628,11 +529,11 @@
             <img src="{{asset('images/logopilar.svg')}}" alt="">
 
             <div class="icons">
-                <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                <a href="#"><i class='bx bxl-twitter'></i></a>
-                <a href="#"><i class='bx bxl-instagram-alt'></i></a>
-                <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-                <a href="#"><i class='bx bxl-youtube'></i></i></a>
+                <a href="https://www.facebook.com/pilarutamatrans"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="https://twitter.com/pilarutamatrans"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com/pilarutamatrans/"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="https://www.linkedin.com/company/pt-pilar-utama-transindo/mycompany/"><i class='bx bxl-linkedin-square'></i></a>
+                <a href="https://www.youtube.com/channel/UCEmc_g-cYJ9am-wF_lFGihA"><i class='bx bxl-youtube'></i></i></a>
             </div>
         </div>
 
@@ -641,40 +542,33 @@
             <li>
                 <h5>Semarang</h5>
             </li>
-            <li><a href="#">Jalan lingkar tanjung mas
+            <li><a href="https://www.google.com/maps/search/Jalan+lingkar+tanjung+mas+no+A+34,+Panggung+Lor,+Kec.+Semarang+Utara,+Kota+Semarang,+Jawa+Tengah+50177/@-6.9539753,110.4036692,17z/data=!3m1!4b1?entry=ttu">Jalan lingkar tanjung mas
                     no A 34, Panggung Lor, Kec. Semarang Utara, Kota Semarang, Jawa Tengah 50177</a>
             </li>
             <li>
                 <h5>DKI Jakarta</h5>
             </li>
-            <li><a href="#">Jalan Rawa Gabus No. 108,
+            <li><a href="https://www.google.com/maps/place/Jl.+Kapuk+Rw.+Gabus+No.108,+RT.9%2FRW.11,+Kapuk,+Kecamatan+Cengkareng,+Kota+Jakarta+Barat,+Daerah+Khusus+Ibukota+Jakarta+11720/@-6.1322474,106.7411416,19z/data=!4m6!3m5!1s0x2e6a1d5c7468dd41:0xbb95d5d64960f208!8m2!3d-6.1316767!4d106.7414454!16s%2Fg%2F11c28f43cn?entry=ttu">Jalan Rawa Gabus No. 108,
                     Kec Cengkareng, Kota
                     Jakarta Barat - DKI Jakarta</a></li>
             <li>
                 <h5>Jawa</h5>
             </li>
-            <li><a href="#">Jalan Raya Merak No. 20, Wedoro, Kec Waru,
+            <li><a href="https://www.google.com/maps/place/Jl.+Raya+Merak+No.20,+Wedoro,+Kec.+Waru,+Kabupaten+Sidoarjo,+Jawa+Timur+61256/@-7.3469127,112.7496633,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd7fb2d4b224ebb:0x8ed9e0c9b6c466ce!8m2!3d-7.346918!4d112.7522382!16s%2Fg%2F11csjmbz71?entry=ttu">Jalan Raya Merak No. 20, Wedoro, Kec Waru,
                     Sidoarjo - Jawa Timur</a></li>
         </div>
 
         <div class="footer-content">
             <h4>Kontak</h4>
-            <li><a href="#">Telepon : 0811-2889-600 </a></li>
-            <li><a href="#">Whatsapp : 0811-2889-600 </a></li>
-            <li><a href="#">Email : telemarketingpilar@gmail.com</a></li>
+            <li><a href="tel:0811-2889-600">Telepon : 0811-2889-600 </a></li>
+            <li><a href="https://wa.me/628112889600?text=Saya%20ingin%20konsultasi%20tentang%20pesanan%20kepada%20Customer Service">Whatsapp : 0811-2889-600 </a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=telemarketingpilar@gmail.com">Email : telemarketingpilar@gmail.com</a></li>
         </div>
     </section>
     <hr style="color: #555555;">
     <p style="align-items: center; text-align: center; color: #d6d6d6;">Pilarutamatransindo - Jasa Kirim Barang
         Terpercaya || Wahyu Cahyo Saputra.<span style="color: white;"> Copyright © 2023 - All Rights Reserved</span></p>
 </section>
-/*<style>*/
-/*    @media (max-width: 576px) {*/
-/*        .footer1{*/
-/*            width: 400px;*/
-/*        }*/
-/*    }*/
-/*</style>*/
 
 @section('scripts')
 

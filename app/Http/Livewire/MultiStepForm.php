@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\OrderSewaTrukLong;
 
@@ -27,6 +28,7 @@ class MultiStepForm extends Component
     public $detail_alamat_origin;
     public $detail_alamat_destinasi;
     public $rencana_kirim;
+    public $status;
     public $harga_id;
 
 
@@ -39,7 +41,10 @@ class MultiStepForm extends Component
         $this->harga = $harga;
         $this->harga_id = $harga_id;
         $this->nama = $harga->nama;
-        $this->email = $harga->email;
+        $user = Auth::user();
+        if ($user) {
+            $this->email = $user->email;
+        }
         $this->whatsapp = $harga->whatsapp;
         $this->home_provinsi = $harga->home_provinsi;
         $this->home_kabupaten = $harga->home_kabupaten;
@@ -54,6 +59,7 @@ class MultiStepForm extends Component
         $this->destinasi_kabupaten = $harga->destinasi_kabupaten;
         $this->destinasi_kecamatan = $harga->destinasi_kecamatan;
         $this->armada = $harga->armada;
+        $this->status = $harga->status;
         $this->rencana_kirim = $harga->rencana_kirim;
     }
     public function render()
@@ -88,6 +94,7 @@ class MultiStepForm extends Component
                 'whatsapp' => 'required|string',
                 'nama' => 'required|string',
                 'email' => 'required|email',
+                'status' => 'required',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
@@ -95,8 +102,9 @@ class MultiStepForm extends Component
                 'home_kabupaten' => 'required|string',
                 'home_kecamatan' => 'required|string',
                 'detail_alamat_home' => 'required|string',
-            
-            ]);} elseif ($this->currentStep == 3) {
+
+            ]);
+        } elseif ($this->currentStep == 3) {
             $this->validate([
                 'origin_provinsi' => 'required|string',
                 'origin_kabupaten' => 'required|string',
@@ -106,7 +114,7 @@ class MultiStepForm extends Component
                 'destinasi_kecamatan' => 'required|string',
                 'detail_alamat_origin' => 'required|string',
                 'detail_alamat_destinasi' => 'required|string',
-                'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+                'armada' => 'required|string|in:pickup,L300,CDE Bak,CDE Box,CDD Bak,CDD Box,CDD Long Box,Fuso Bak,Fuso Box,tronton bak/3away,tronton wing box/build up',
                 'rencana_kirim' => 'required|date',
             ]);
         } elseif ($this->currentStep == 4) {
@@ -119,7 +127,7 @@ class MultiStepForm extends Component
                 'destinasi_kecamatan' => 'required|string',
                 'detail_alamat_origin' => 'required|string',
                 'detail_alamat_destinasi' => 'required|string',
-                'armada' => 'required|string|in:PickUp,CDD,CDE,Fuso,Long,Box',
+                'armada' => 'required|string|in:pickup,L300,CDE Bak,CDE Box,CDD Bak,CDD Box,CDD Long Box,Fuso Bak,Fuso Box,tronton bak/3away,tronton wing box/build up',
                 'rencana_kirim' => 'required|date',
                 'home_provinsi' => 'required|string',
                 'home_kabupaten' => 'required|string',
@@ -148,6 +156,7 @@ class MultiStepForm extends Component
             'destinasi_kabupaten' => $this->destinasi_kabupaten,
             'destinasi_kecamatan' => $this->destinasi_kecamatan,
             'armada' => $this->armada,
+            'status' => 'menunggu',
             'rencana_kirim' => $this->rencana_kirim,
         ]);
 
@@ -167,6 +176,7 @@ class MultiStepForm extends Component
         $this->destinasi_kabupaten = NULL;
         $this->destinasi_kecamatan = NULL;
         $this->armada = NULL;
+        $this->status = NULL;
         $this->rencana_kirim = NULL;
 
         redirect()->route('cekongkir')->with('success', 'Terima Kasih Atas Pesanan Anda, CS Kami Akan Segera Menghubungi Anda');

@@ -23,6 +23,8 @@ class OrderSewaTrukShort extends Model
         'harga',
         'whatsapp',
         'user_id',
+        'status',
+        'gambar',
         'nama',
         'email',
         'home_provinsi',
@@ -35,7 +37,7 @@ class OrderSewaTrukShort extends Model
         'rencana_kirim',
     ];
 
-    public function user2()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
