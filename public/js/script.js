@@ -42,3 +42,33 @@ toggleBtn.onclick = function () {
     toggleBtnIcon.classList.toggle('fa-xmark', isOpen);
     toggleBtnIcon.classList.toggle('fa-bars', !isOpen);
 };
+
+// Scroll Navbar Keranjang
+document.addEventListener("DOMContentLoaded", function() {
+    const draggable = document.querySelector(".draggable");
+
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    draggable.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX - draggable.offsetLeft;
+        scrollLeft = draggable.scrollLeft;
+    });
+
+    draggable.addEventListener("mouseleave", () => {
+        isDragging = false;
+    });
+
+    draggable.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
+
+    draggable.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - draggable.offsetLeft;
+        const walk = (x - startX) * 1; // Adjust scrolling speed
+        draggable.scrollLeft = scrollLeft - walk;
+    });
+});

@@ -18,6 +18,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -28,7 +29,7 @@
 
 <body>
     @include('layout.navbar')
-    <div class="navigation-riwayat">
+    <div class="navigation-riwayat draggable">
         <ul>
             <li> <a href="/riwayat"> Sewa Truk LongTrip </a> </li>
             <li> <a href="/riwayattrukshort"> Sewa Truk ShortTrip </a> </li>

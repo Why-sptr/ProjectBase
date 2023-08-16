@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -25,7 +26,7 @@
 <body>
     @include('layout.navbar')
     <h1 class="title-pesanan">Pesanan Sewa Truk ShortTrip</h1>
-    <div class="navigation-riwayat">
+    <div class="navigation-riwayat draggable">
         <ul>
             <li class="active-2"> <a href="/ordertrukshort"> Menunggu </a> </li>
             <li> <a href="/konfirmasi/trukshort"> Konfirmasi </a> </li>
@@ -64,11 +65,13 @@
                     Armada : {{ $order->armada }}
                 </p>
                 <p class="p-keranjang" style="color: aquamarine;">
-                    Harga : {{ $order->harga }}
+                    Harga : {{ number_format($order->harga, 0, ',', '.') }}
+                </p>
+                <p class="p-keranjang" style="color: orange;">
+                    Status : Menunggu Pembayaran
                 </p>
             </div>
             <div class="button-keranjang">
-                <button class="button2">Menunggu Pembayaran</button>
                 <button class="upload-button" data-order-id="{{ $order->id }}">Upload</button>
             </div>
         </div>
@@ -84,11 +87,10 @@
             <form id="uploadForm" action="{{ route('upload.image/trukshort', ['id' => $order]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="orderId" name="orderId" value="">
-                <label for="gambar">Pilih Gambar:</label>
                 <input type="hidden" value="konfirmasi" name="status">
                 <input type="file" name="gambar" id="gambar" accept="image/*" required>
                 <img id="gambarPreview" src="#" alt="Preview" style="max-width: 100%; max-height: 200px;">
-                <button type="submit">Upload</button>
+                <button class="modalbtn" type="submit">Upload</button>
             </form>
             @else
             <p>Upload gambar tidak diizinkan karena data tidak tersedia.</p>
