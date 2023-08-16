@@ -37,8 +37,8 @@
 
   <div class="dropdown_menu">
     <li><a href="/riwayat">Riwayat</a></li>
-    <li><a href="riwayat">Truk-Long</a></li>
-    <li><a href="riwayat">Truk-Short</a></li>
+    <li><a href="/ordertruklong">Truk-Long</a></li>
+    <li><a href="/ordertrukshort">Truk-Short</a></li>
     <li><a href="/orderpindahanlong">Pindahan-Long</a></li>
     <li><a href="/orderpindahanshort">Pindahan-Short</a></li>
   </div>

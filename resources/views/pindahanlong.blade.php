@@ -11,14 +11,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/x-icon" href="{{asset('images/logosatu.svg')}}">
 
+  <link rel="stylesheet" href="boxicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{asset('css/swipper.css')}}">
+
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 </head>
 
 <style>
@@ -30,6 +42,7 @@
     border-radius: 10px;
     margin-bottom: 15px;
   }
+
   .closebtn {
     margin-left: 15px;
     color: white;
@@ -40,6 +53,7 @@
     cursor: pointer;
     transition: 0.3s;
   }
+
   .closebtn:hover {
     color: black;
   }
@@ -108,7 +122,8 @@
     <div class="flex-button">
       <a href="#"><button><img src="{{asset('images/luarkota.svg')}}" class="img-button">Luar
           Kota</button></a>
-      <a href="/cekongkirdalamkota2"><button class="button2"><img src="{{asset('images/short.svg')}}" class="img-button">Dalam
+      <a href="/cekongkirdalamkota2"><button class="button2"><img src="{{asset('images/short.svg')}}"
+            class="img-button">Dalam
           Kota</button></a>
     </div>
 
@@ -126,8 +141,8 @@
                 @endforeach
               </select>
             </div>
-             <!-- Add this hidden input to store the ID -->
-             <input type="hidden" id="dataId" value="">
+            <!-- Add this hidden input to store the ID -->
+            <input type="hidden" id="dataId" value="">
             <div class="input-box">
               <span class="details" style="color: #0B1C24;">.</span>
               <select class="input" name="origin_kabupaten" id="origin_kabupaten" required>
@@ -442,7 +457,7 @@
               </p>
             </div>
           </div>
-           <div class="card-armada swiper-slide">
+          <div class="card-armada swiper-slide">
             <div class="image-content">
               <span class="overlay"></span>
 
@@ -469,7 +484,7 @@
               </p>
             </div>
           </div>
-           <div class="card-armada swiper-slide">
+          <div class="card-armada swiper-slide">
             <div class="image-content">
               <span class="overlay"></span>
 
@@ -550,15 +565,16 @@
   @include('layout.footer')
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
 
-      $('#origin_provinsi').on('change', function() {
+      $('#origin_provinsi').on('change', function () {
         var idProvinsi = $(this).val();
         if (idProvinsi) {
           $.ajax({
@@ -567,18 +583,18 @@
             data: {
               id_provinsi: idProvinsi
             },
-            success: function(response) {
+            success: function (response) {
               $('#origin_kabupaten').empty();
               $('#origin_kecamatan').empty();
 
               $('#origin_kabupaten').append('<option>== Pilih Salah Satu ==</option>');
               $('#origin_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function(key, value) {
+              $.each(response, function (key, value) {
                 $('#origin_kabupaten').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function(data) {
+            error: function (data) {
               console.log('error:', data);
             }
           });
@@ -591,7 +607,7 @@
         }
       });
 
-      $('#origin_kabupaten').on('change', function() {
+      $('#origin_kabupaten').on('change', function () {
         var idKabupaten = $(this).val();
         if (idKabupaten) {
           $.ajax({
@@ -600,16 +616,16 @@
             data: {
               id_kabupaten: idKabupaten
             },
-            success: function(response) {
+            success: function (response) {
               $('#origin_kecamatan').empty();
 
               $('#origin_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function(key, value) {
+              $.each(response, function (key, value) {
                 $('#origin_kecamatan').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function(data) {
+            error: function (data) {
               console.log('error:', data);
             }
           });
@@ -620,7 +636,7 @@
         }
       });
 
-      $('#destinasi_provinsi').on('change', function() {
+      $('#destinasi_provinsi').on('change', function () {
         var idProvinsi = $(this).val();
         if (idProvinsi) {
           $.ajax({
@@ -629,18 +645,18 @@
             data: {
               id_provinsi: idProvinsi
             },
-            success: function(response) {
+            success: function (response) {
               $('#destinasi_kabupaten').empty();
               $('#destinasi_kecamatan').empty();
 
               $('#destinasi_kabupaten').append('<option>== Pilih Salah Satu ==</option>');
               $('#destinasi_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function(key, value) {
+              $.each(response, function (key, value) {
                 $('#destinasi_kabupaten').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function(data) {
+            error: function (data) {
               console.log('error:', data);
             }
           });
@@ -653,7 +669,7 @@
         }
       });
 
-      $('#destinasi_kabupaten').on('change', function() {
+      $('#destinasi_kabupaten').on('change', function () {
         var idKabupaten = $(this).val();
         if (idKabupaten) {
           $.ajax({
@@ -662,16 +678,16 @@
             data: {
               id_kabupaten: idKabupaten
             },
-            success: function(response) {
+            success: function (response) {
               $('#destinasi_kecamatan').empty();
 
               $('#destinasi_kecamatan').append('<option>== Pilih Salah Satu ==</option>');
 
-              $.each(response, function(key, value) {
+              $.each(response, function (key, value) {
                 $('#destinasi_kecamatan').append('<option value="' + value.id + '">' + value.name + '</option>');
               });
             },
-            error: function(data) {
+            error: function (data) {
               console.log('error:', data);
             }
           });
@@ -684,7 +700,7 @@
 
       var dataId;
 
-      $('#cekHargaBtn').on('click', function(e) {
+      $('#cekHargaBtn').on('click', function (e) {
         e.preventDefault();
 
         // Mengambil data dari form
@@ -719,7 +735,7 @@
             whatsapp: whatsapp,
             user_id: user_id, // Mengirim user_id bersamaan dengan data lainnya
           },
-          success: function(response) {
+          success: function (response) {
             $('#result-container').show();
             $('#origin_provinsi_result').text(originProvinsi);
             $('#origin_kabupaten_result').text(originKabupaten);
@@ -739,13 +755,13 @@
               $('#harga_result').text('Hubungi Lebih Lanjut');
             }
           },
-          error: function(error) {
+          error: function (error) {
             console.log('Error:', error);
           }
         });
       });
 
-      $('#orderBtn').on('click', function(e) {
+      $('#orderBtn').on('click', function (e) {
         e.preventDefault();
 
         if (dataId) {
@@ -770,13 +786,13 @@
     var i;
 
     for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
+      close[i].onclick = function () {
 
         var div = this.parentElement;
 
         div.style.opacity = "0";
 
-        setTimeout(function() {
+        setTimeout(function () {
           div.style.display = "none";
         }, 600);
       }
