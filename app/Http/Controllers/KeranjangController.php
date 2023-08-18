@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\OrderSewaTrukLong;
 use App\Models\OrderSewaTrukShort;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class KeranjangController extends Controller
 {
@@ -156,8 +157,8 @@ class KeranjangController extends Controller
 
     public function uploadImage(Request $request, $id)
     {
-        // Ambil data order berdasarkan $id
-        $keranjangOrders = OrderSewaTrukLong::findOrFail($id);
+        $orderId = $request->input('orderId');
+        $keranjangOrders = OrderSewaTrukLong::findOrFail($orderId);
 
         // Proses upload gambar dan simpan ke direktori yang sesuai
         if ($request->hasFile('gambar')) {
@@ -169,6 +170,32 @@ class KeranjangController extends Controller
             $keranjangOrders->gambar = $namaGambar;
             $keranjangOrders->status = 'konfirmasi';
             $keranjangOrders->save();
+
+            // Mengirim notifikasi ke nomor Telegram
+            $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+            $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+
+            $message = "Bukti pembayaran berhasil diupload untuk Order ID: " . $keranjangOrders->id . "\n"
+                . "--------------------------\n"
+                . "Origin Provinsi: " . $keranjangOrders->origin_provinsi . "\n"
+                . "Origin Kabupaten: " . $keranjangOrders->origin_kabupaten . "\n"
+                . "Origin Kecamatan: " . $keranjangOrders->origin_kecamatan . "\n"
+                . "--------------------------\n"
+                . "Destinasi Provinsi: " . $keranjangOrders->destinasi_provinsi . "\n"
+                . "Destinasi Kabupaten: " . $keranjangOrders->destinasi_kabupaten . "\n"
+                . "Destinasi Kecamatan: " . $keranjangOrders->destinasi_kecamatan . "\n"
+                . "--------------------------\n"
+                . "Armada: " . $keranjangOrders->armada . "\n"
+                . "Whatsapp: " . $keranjangOrders->whatsapp . "\n"
+                . "GetWa: https://wa.me/" . $keranjangOrders->whatsapp . "\n"
+                . "--------------------------\n"
+                . "Harga: " . $keranjangOrders->harga . "\n"
+                . "Status Pesanan: " . $keranjangOrders->status;
+
+            $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                'chat_id' => $telegramChatId,
+                'text' => $message,
+            ]);
         }
 
         // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses
@@ -249,8 +276,8 @@ class KeranjangController extends Controller
 
     public function uploadImageTrukShort(Request $request, $id)
     {
-        // Ambil data order berdasarkan $id
-        $keranjangOrders = OrderSewaTrukShort::findOrFail($id);
+        $orderId = $request->input('orderId');
+        $keranjangOrders = OrderSewaTrukShort::findOrFail($orderId);
 
         // Proses upload gambar dan simpan ke direktori yang sesuai
         if ($request->hasFile('gambar')) {
@@ -262,6 +289,34 @@ class KeranjangController extends Controller
             $keranjangOrders->gambar = $namaGambar;
             $keranjangOrders->status = 'konfirmasi';
             $keranjangOrders->save();
+
+             // Mengirim notifikasi ke nomor Telegram
+             $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+             $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+ 
+             $message = "Bukti pembayaran berhasil diupload untuk Order ID: " . $keranjangOrders->id . "\n"
+                 . "--------------------------\n"
+                 . "Origin Provinsi: " . $keranjangOrders->origin_provinsi . "\n"
+                 . "Origin Kabupaten: " . $keranjangOrders->origin_kabupaten . "\n"
+                 . "Origin Kecamatan: " . $keranjangOrders->origin_kecamatan . "\n"
+                 . "Origin Kelurahan: " . $keranjangOrders->origin_kelurahan . "\n"
+                 . "--------------------------\n"
+                 . "Destinasi Provinsi: " . $keranjangOrders->destinasi_provinsi . "\n"
+                 . "Destinasi Kabupaten: " . $keranjangOrders->destinasi_kabupaten . "\n"
+                 . "Destinasi Kecamatan: " . $keranjangOrders->destinasi_kecamatan . "\n"
+                 . "Destinasi Kelurahan: " . $keranjangOrders->destinasi_kelurahan . "\n"
+                 . "--------------------------\n"
+                 . "Armada: " . $keranjangOrders->armada . "\n"
+                 . "Whatsapp: " . $keranjangOrders->whatsapp . "\n"
+                 . "GetWa: https://wa.me/" . $keranjangOrders->whatsapp . "\n"
+                 . "--------------------------\n"
+                 . "Harga: " . $keranjangOrders->harga . "\n"
+                 . "Status Pesanan: " . $keranjangOrders->status;
+ 
+             $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                 'chat_id' => $telegramChatId,
+                 'text' => $message,
+             ]);
         }
 
         // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses
@@ -342,8 +397,8 @@ class KeranjangController extends Controller
 
     public function uploadImagePindahanLong(Request $request, $id)
     {
-        // Ambil data order berdasarkan $id
-        $keranjangOrders = OrderPindahanLong::findOrFail($id);
+        $orderId = $request->input('orderId');
+        $keranjangOrders = OrderPindahanLong::findOrFail($orderId);
 
         // Proses upload gambar dan simpan ke direktori yang sesuai
         if ($request->hasFile('gambar')) {
@@ -355,6 +410,33 @@ class KeranjangController extends Controller
             $keranjangOrders->gambar = $namaGambar;
             $keranjangOrders->status = 'konfirmasi';
             $keranjangOrders->save();
+
+             // Mengirim notifikasi ke nomor Telegram
+             $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+             $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+ 
+             $message = "Bukti pembayaran berhasil diupload untuk Order ID: " . $keranjangOrders->id . "\n"
+                 . "--------------------------\n"
+                 . "Origin Provinsi: " . $keranjangOrders->origin_provinsi . "\n"
+                 . "Origin Kabupaten: " . $keranjangOrders->origin_kabupaten . "\n"
+                 . "Origin Kecamatan: " . $keranjangOrders->origin_kecamatan . "\n"
+                 . "--------------------------\n"
+                 . "Destinasi Provinsi: " . $keranjangOrders->destinasi_provinsi . "\n"
+                 . "Destinasi Kabupaten: " . $keranjangOrders->destinasi_kabupaten . "\n"
+                 . "Destinasi Kecamatan: " . $keranjangOrders->destinasi_kecamatan . "\n"
+                 . "--------------------------\n"
+                 . "Armada: " . $keranjangOrders->armada . "\n"
+                 . "Helper: " . $keranjangOrders->tkbm . "\n"
+                 . "Whatsapp: " . $keranjangOrders->whatsapp . "\n"
+                 . "GetWa: https://wa.me/" . $keranjangOrders->whatsapp . "\n"
+                 . "--------------------------\n"
+                 . "Harga: " . $keranjangOrders->harga . "\n"
+                 . "Status Pesanan: " . $keranjangOrders->status;
+ 
+             $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                 'chat_id' => $telegramChatId,
+                 'text' => $message,
+             ]);
         }
 
         // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses
@@ -435,8 +517,8 @@ class KeranjangController extends Controller
 
     public function uploadImagePindahanShort(Request $request, $id)
     {
-        // Ambil data order berdasarkan $id
-        $keranjangOrders = OrderPindahanShort::findOrFail($id);
+        $orderId = $request->input('orderId');
+        $keranjangOrders = OrderPindahanShort::findOrFail($orderId);
 
         // Proses upload gambar dan simpan ke direktori yang sesuai
         if ($request->hasFile('gambar')) {
@@ -448,6 +530,35 @@ class KeranjangController extends Controller
             $keranjangOrders->gambar = $namaGambar;
             $keranjangOrders->status = 'konfirmasi';
             $keranjangOrders->save();
+
+             // Mengirim notifikasi ke nomor Telegram
+             $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+             $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+ 
+             $message = "Bukti pembayaran berhasil diupload untuk Order ID: " . $keranjangOrders->id . "\n"
+                 . "--------------------------\n"
+                 . "Origin Provinsi: " . $keranjangOrders->origin_provinsi . "\n"
+                 . "Origin Kabupaten: " . $keranjangOrders->origin_kabupaten . "\n"
+                 . "Origin Kecamatan: " . $keranjangOrders->origin_kecamatan . "\n"
+                 . "Origin Kelurahan: " . $keranjangOrders->origin_kelurahan . "\n"
+                 . "--------------------------\n"
+                 . "Destinasi Provinsi: " . $keranjangOrders->destinasi_provinsi . "\n"
+                 . "Destinasi Kabupaten: " . $keranjangOrders->destinasi_kabupaten . "\n"
+                 . "Destinasi Kecamatan: " . $keranjangOrders->destinasi_kecamatan . "\n"
+                 . "Destinasi Kelurahan: " . $keranjangOrders->destinasi_kelurahan . "\n"
+                 . "--------------------------\n"
+                 . "Armada: " . $keranjangOrders->armada . "\n"
+                 . "Helper: " . $keranjangOrders->tkbm . "\n"
+                 . "Whatsapp: " . $keranjangOrders->whatsapp . "\n"
+                 . "GetWa: https://wa.me/" . $keranjangOrders->whatsapp . "\n"
+                 . "--------------------------\n"
+                 . "Harga: " . $keranjangOrders->harga . "\n"
+                 . "Status Pesanan: " . $keranjangOrders->status;
+ 
+             $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                 'chat_id' => $telegramChatId,
+                 'text' => $message,
+             ]);
         }
 
         // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses

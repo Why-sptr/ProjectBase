@@ -929,20 +929,19 @@ label[for="gambar"]:hover {
         margin-top: 20px;
         display: flex;
         align-items: start;
-        overflow-x: auto;
+        overflow-y: hidden;
         padding: 10px;
         justify-content: flex-start;
         -webkit-overflow-scrolling: touch;
         /* Untuk dukungan scroll lancar di perangkat iOS */
     }
-
     .navigation-riwayat ul {
         padding: 0;
         display: flex;
         align-items: flex-start;
         list-style: none;
         white-space: nowrap;
-        margin-left: 400px; 
+        margin-left: 400px;
     }
 
     .navigation-riwayat a {
@@ -975,9 +974,7 @@ label[for="gambar"]:hover {
         font-weight: 700;
         font-size: 14px;
     }
-
-
-
+    
     /* Keranjang */
     .item-keranjang {
         margin-top: 20px;
