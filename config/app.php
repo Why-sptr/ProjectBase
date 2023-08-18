@@ -187,6 +187,7 @@ return [
          */
         // Provider Lain
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -212,6 +213,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
+        
     ])->toArray(),
+    'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
 
 ];

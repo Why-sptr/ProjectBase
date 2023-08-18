@@ -100,14 +100,14 @@ class LongPindahanStep extends Component
                 'email' => 'required|email',
                 'status' => 'required',
             ]);
-        }elseif ($this->currentStep == 2) {
+        } elseif ($this->currentStep == 2) {
             $this->validate([
-                  'home_provinsi' => 'required|string',
+                'home_provinsi' => 'required|string',
                 'home_kabupaten' => 'required|string',
                 'home_kecamatan' => 'required|string',
                 'detail_alamat_home' => 'required|string',
             ]);
-            }elseif ($this->currentStep == 3) {
+        } elseif ($this->currentStep == 3) {
             $this->validate([
                 'origin_provinsi' => 'required|string',
                 'origin_kabupaten' => 'required|string',

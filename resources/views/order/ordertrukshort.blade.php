@@ -103,13 +103,13 @@
     @include('layout.footer')
     <script>
         var modal = document.getElementById("uploadModal");
-
         var uploadButtons = document.querySelectorAll(".upload-button");
-
-        var closeModal = document.getElementById("closeModal");
+        var orderIdInput = document.getElementById("orderId");
 
         uploadButtons.forEach(function(button) {
             button.addEventListener("click", function() {
+                var orderId = button.getAttribute("data-order-id");
+                orderIdInput.value = orderId; // Mengisi nilai input tersembunyi
                 modal.style.display = "block";
             });
         });

@@ -11,6 +11,7 @@ use App\Models\ShortTripTruk;
 use App\Models\Village;
 use App\Models\OrderPindahanShort;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ShortTripPindahanController extends Controller
 {
@@ -221,6 +222,7 @@ class ShortTripPindahanController extends Controller
                 $newHarga->armada = $armada;
                 $newHarga->tkbm = $tkbm;
                 $newHarga->paket = 'default_value';
+                $newHarga->status = 'keranjang';
                 $newHarga->destinasi_provinsi = $destinasiProvinsi;
                 $newHarga->destinasi_kabupaten = $destinasiKabupaten;
                 $newHarga->destinasi_kecamatan = $destinasiKecamatan;
@@ -229,6 +231,34 @@ class ShortTripPindahanController extends Controller
                 $newHarga->jarak = $result->jarak;
                 $newHarga->whatsapp = $whatsapp;
                 $newHarga->save();
+
+                // Mengirim notifikasi ke nomor Telegram
+                $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+                $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+
+                $message = "Ada Pesanan Baru Pindahan ShortTrip:\n"
+                    . "ID: " . $newHarga->id . "\n"
+                    . "--------------------------\n"
+                    . "Origin Provinsi: " . $newHarga->origin_provinsi . "\n"
+                    . "Origin Kabupaten: " . $newHarga->origin_kabupaten . "\n"
+                    . "Origin Kecamatan: " . $newHarga->origin_kecamatan . "\n"
+                    . "--------------------------\n"
+                    . "Destinasi Provinsi: " . $newHarga->destinasi_provinsi . "\n"
+                    . "Destinasi Kabupaten: " . $newHarga->destinasi_kabupaten . "\n"
+                    . "Destinasi Kecamatan: " . $newHarga->destinasi_kecamatan . "\n"
+                    . "--------------------------\n"
+                    . "Armada: " . $newHarga->armada . "\n"
+                    . "Helper: " . $newHarga->tkbm . "\n"
+                    . "Whatsapp: " . $newHarga->whatsapp . "\n"
+                    . "GetWa: https://wa.me/" . $newHarga->whatsapp . "\n"
+                    . "--------------------------\n"
+                    . "Harga: " . $newHarga->harga . "\n"
+                    . "Status Pesanan: " . $newHarga->status;
+
+                $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                    'chat_id' => $telegramChatId,
+                    'text' => $message,
+                ]);
 
                 return response()->json(['harga' => $adjustedPrice, 'jarak' => $result->jarak, 'id' => $newHarga->id]);
             } else {
@@ -242,6 +272,7 @@ class ShortTripPindahanController extends Controller
                 $newHarga->armada = $armada;
                 $newHarga->tkbm = $tkbm;
                 $newHarga->paket = 'default_value';
+                $newHarga->status = 'keranjang';
                 $newHarga->destinasi_provinsi = $destinasiProvinsi;
                 $newHarga->destinasi_kabupaten = $destinasiKabupaten;
                 $newHarga->destinasi_kecamatan = $destinasiKecamatan;
@@ -250,6 +281,36 @@ class ShortTripPindahanController extends Controller
                 $newHarga->jarak = 0;
                 $newHarga->whatsapp = $whatsapp;
                 $newHarga->save();
+
+                // Mengirim notifikasi ke nomor Telegram
+                $telegramBotToken = '6355786875:AAHOL89jXFChVEKR2FNcUIipEvSQC36ONug';
+                $telegramChatId = '-997905830'; // Ganti dengan ID chat Telegram yang sesuai
+
+                $message = "Ada Pesanan Baru Pindahan ShortTrip:\n"
+                    . "ID: " . $newHarga->id . "\n"
+                    . "--------------------------\n"
+                    . "Origin Provinsi: " . $newHarga->origin_provinsi . "\n"
+                    . "Origin Kabupaten: " . $newHarga->origin_kabupaten . "\n"
+                    . "Origin Kecamatan: " . $newHarga->origin_kecamatan . "\n"
+                    . "Origin Kelurahan: " . $newHarga->origin_kelurahan . "\n"
+                    . "--------------------------\n"
+                    . "Destinasi Provinsi: " . $newHarga->destinasi_provinsi . "\n"
+                    . "Destinasi Kabupaten: " . $newHarga->destinasi_kabupaten . "\n"
+                    . "Destinasi Kecamatan: " . $newHarga->destinasi_kecamatan . "\n"
+                    . "Destinasi Kelurahan: " . $newHarga->destinasi_kelurahan . "\n"
+                    . "--------------------------\n"
+                    . "Armada: " . $newHarga->armada . "\n"
+                    . "Helper: " . $newHarga->tkbm . "\n"
+                    . "Whatsapp: " . $newHarga->whatsapp . "\n"
+                    . "GetWa: https://wa.me/" . $newHarga->whatsapp . "\n"
+                    . "--------------------------\n"
+                    . "Harga: " . $newHarga->harga . "\n"
+                    . "Status Pesanan: " . $newHarga->status;
+
+                $response = Http::post("https://api.telegram.org/bot$telegramBotToken/sendMessage", [
+                    'chat_id' => $telegramChatId,
+                    'text' => $message,
+                ]);
 
                 return response()->json(['message' => 'Hubungi Lebih Lanjut', 'id' => $newHarga->id]);
             }

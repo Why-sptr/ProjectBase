@@ -61,7 +61,7 @@
                     Armada : {{ $order->armada }}
                 </p>
                 <p class="p-keranjang" style="color: aquamarine;">
-                    Harga : {{ $order->harga }}
+                    Harga : {{ number_format($order->harga, 0, ',', '.') }}
                 </p>
             </div>
             <div class="button-keranjang">
